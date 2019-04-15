@@ -2,5 +2,11 @@
 <project version="4">
   <component name="Encoding" addBOMForNewFiles="with NO BOM">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/Impl/TrashcanDaoImpl.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/dao.Impl/TrashcanDaoImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/entity/Location_noneedatnow.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/servlet/AddAcoountCredit.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/servlet/RegisterServlet.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/util/DBUtil.java" charset="UTF-8" />
   </component>
 </project>
