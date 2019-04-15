@@ -6,8 +6,8 @@ import java.util.List;
 
 import org.dao.ITrashcanDao;
 import org.entity.Account;
-import org.entity.Location_noneedatnow;
-import org.entity.Person;
+import org.entity.Location;
+import org.entity.AccountInformation;
 import org.util.DBUtil;
 
 public class TrashcanDaoImpl implements ITrashcanDao{
@@ -17,7 +17,7 @@ public class TrashcanDaoImpl implements ITrashcanDao{
 		ResultSet rs = null;
 		try {
 			String sql = "insert into account values(?,?)";
-			Object[] params = {account.getName(),account.getPwd()};
+			Object[] params = {account.getAname(),account.getPwd()};
 			return DBUtil.executeUpdate(sql, params);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -38,16 +38,15 @@ public class TrashcanDaoImpl implements ITrashcanDao{
 		try {
 			status = 0;
 			String sql = "select * from account where aname=? and pwd=?";
-			Object[] params = {account.getName(),account.getPwd()};
+			Object[] params = {account.getAname(),account.getPwd()};
 			rs = DBUtil.executeQuery(sql, params);
-			if(rs.next()) {
-				status = 1;
+			if(rs != null){
+				if(rs.next()) {
+					status = 1;
+				}
 			}
 			return status;
 		} catch (SQLException e) {
-			e.printStackTrace();
-			return status;
-		}catch (Exception e) {
 			e.printStackTrace();
 			return status;
 		}finally {
@@ -57,7 +56,8 @@ public class TrashcanDaoImpl implements ITrashcanDao{
 
 	@Override//存在则返回真，否则为假
 	public boolean isExist(String name) {
-		return queryAccountBySno(name) == null ? false:true;
+		Account account = queryAccountBySno(name);
+		return  account == null;
 	}
 
 	@Override//返回账户信息
@@ -68,16 +68,15 @@ public class TrashcanDaoImpl implements ITrashcanDao{
 			String sql = "select * from account where aname=?";
 			Object[] params = {name};
 			rs = DBUtil.executeQuery(sql, params);
-			if(rs.next()) {
-				String aname = rs.getString("aname");
-				String pwd = rs.getString("pwd");
-				account = new Account(aname, pwd);
+			if(rs != null){
+				if(rs.next()) {
+					String aname = rs.getString("aname");
+					String pwd = rs.getString("pwd");
+					account = new Account(aname, pwd);
+				}
 			}
 			return account;
 		} catch (SQLException e) {
-			e.printStackTrace();
-			return null;
-		}catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}finally {
@@ -92,17 +91,16 @@ public class TrashcanDaoImpl implements ITrashcanDao{
 		try {
 			String sql = "select * from account";
 			rs = DBUtil.executeQuery(sql, null);
-			while(rs.next()) {
-				String aname = rs.getString("aname");
-				String pwd = rs.getString("pwd");
-				Account account = new Account(aname, pwd);
-				accounts.add(account);
+			if(rs != null){
+				while(rs.next()) {
+					String aname = rs.getString("aname");
+					String pwd = rs.getString("pwd");
+					Account account = new Account(aname, pwd);
+					accounts.add(account);
+				}
 			}
 			return accounts;
 		} catch (SQLException e) {
-			e.printStackTrace();
-			return null;
-		}catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}finally {
@@ -118,14 +116,13 @@ public class TrashcanDaoImpl implements ITrashcanDao{
 			String sql = "select * from credit where name=?";
 			Object[] params = {name};
 			rs = DBUtil.executeQuery(sql, params);
-			if(rs.next()) {
-				acredit = rs.getInt("credit");
+			if(rs != null){
+				if(rs.next()) {
+					acredit = rs.getInt("credit");
+				}
 			}
 			return acredit;
 		} catch (SQLException e) {
-			e.printStackTrace();
-			return -1;
-		}catch (Exception e) {
 			e.printStackTrace();
 			return -1;
 		}finally {
@@ -133,7 +130,7 @@ public class TrashcanDaoImpl implements ITrashcanDao{
 		}
 	}
 
-	@Override//增加积分
+	@Override//增加积分--未完成
 	public boolean addAcoountCredit(String nameString ,int increasement) {
 		ResultSet rs = null;
 		int acredit = 0;
@@ -151,7 +148,7 @@ public class TrashcanDaoImpl implements ITrashcanDao{
 
 
 	@Override//设置账户信息
-	public boolean setPerson(Person person) {//
+	public boolean setPerson(AccountInformation selfInformation) {//
 		return false;
 	}
 
@@ -168,25 +165,24 @@ public class TrashcanDaoImpl implements ITrashcanDao{
 	}
 
 	@Override//获取坐标
-	public List<Location_noneedatnow> queryAllLocation() {
+	public List<Location> queryAllLocation() {
 		ResultSet rs = null;
-		List<Location_noneedatnow> locations = null;
+		List<Location> locations = null;
 		try {
 			String sql = "select * from location";
 			rs = DBUtil.executeQuery(sql, null);
-			while(rs.next()) {
-				Double lo = rs.getDouble("logitude");
-				Double la = rs.getDouble("latitude");
-				Location_noneedatnow location = new Location_noneedatnow(lo, la);
-				locations.add(location);
+			if(rs != null){
+				while(rs.next()) {
+					Double lo = rs.getDouble("logitude");
+					Double la = rs.getDouble("latitude");
+					Location location = new Location(lo, la);
+					locations.add(location);
+				}
 			}
 			return locations;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return null;
-		}catch (Exception e) {
-			e.printStackTrace();
-			return null;
+			return locations;
 		}finally {
 			DBUtil.closeAll(rs, null, null);
 		}

@@ -5,7 +5,7 @@ import java.util.List;
 import org.dao.ITrashcanDao;
 import org.dao.Impl.TrashcanDaoImpl;
 import org.entity.Account;
-import org.entity.Location_noneedatnow;
+import org.entity.Location;
 import org.service.ITrashcanService;
 
 public class TrashcanServiceImpl implements ITrashcanService{
@@ -13,7 +13,7 @@ public class TrashcanServiceImpl implements ITrashcanService{
 	
 	@Override
 	public boolean Register(Account account) {
-		if(trashcanDao.isExist(account.getName())) {
+		if(trashcanDao.isExist(account.getAname())) {
 			return false;
 		}else {
 			return trashcanDao.Register(account);
@@ -36,7 +36,7 @@ public class TrashcanServiceImpl implements ITrashcanService{
 	}
 
 	@Override
-	public List<Location_noneedatnow> queryAllLocation() {
+	public List<Location> queryAllLocation() {
 		return trashcanDao.queryAllLocation();
 	}
 

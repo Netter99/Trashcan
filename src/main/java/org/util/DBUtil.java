@@ -56,7 +56,7 @@ public class DBUtil {
 			}
 		}
 
-		//关闭所有
+		//关闭所有连接
 		public static void closeAll(ResultSet rs, PreparedStatement stmt, Connection connection) {
 			try {
 				if (rs != null)

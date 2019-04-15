@@ -1,7 +1,7 @@
 package org.entity;
 
 public class ThrowTimes {
-	private String openid;
+	private String aname;
 	private int time;
 	
 	public ThrowTimes() {
@@ -16,11 +16,8 @@ public class ThrowTimes {
 	public void setTime(int time) {
 		this.time = time;
 	}
-	public String getopenid() {
-		return openid;
-	}
-	public void setopenid(String openid) {
-		this.openid = openid;
+	public String getAname() {
+		return aname;
 	}
 	
 }

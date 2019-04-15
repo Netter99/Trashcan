@@ -1,23 +1,23 @@
 package org.entity;
 
-public class Person {
-	String openid;
-	String sno;
-	String sname;
-	String sex;
-	String school;
-	String major;
-	String sclass;
+public class AccountInformation {
+	private String aname;
+	private String sno;
+	private String name;
+	private String sex;
+	private String school;
+	private String major;
+	private String sclass;
 	
-	public Person() {}
+	public AccountInformation() {}
 
-	public Person(String sname, String sno) {
-		this.sname = sname;
+	public AccountInformation(String name, String sno) {
+		this.name = name;
 		this.sno = sno;
 	}
 	
-	public Person(String sname, String sno, String sex, String school, String major, String sclass) {
-		this.sname = sname;
+	public AccountInformation(String name, String sno, String sex, String school, String major, String sclass) {
+		this.name = name;
 		this.sno = sno;
 		this.sex = sex;
 		this.school = school;
@@ -25,16 +25,16 @@ public class Person {
 		this.sclass = sclass;
 	}
 
-	public String getopenid() {
-		return openid;
+	public String getAname() {
+		return aname;
 	}
 
-	public String getSname() {
-		return sname;
+	public String getname() {
+		return name;
 	}
 
-	public void setSname(String sname) {
-		this.sname = sname;
+	public void setname(String name) {
+		this.name = name;
 	}
 
 	public String getsno() {

@@ -3,7 +3,7 @@ package org.service;
 import java.util.List;
 
 import org.entity.Account;
-import org.entity.Location_noneedatnow;
+import org.entity.Location;
 
 public interface ITrashcanService {
 	//注册
@@ -19,6 +19,6 @@ public interface ITrashcanService {
 	public void addAcoountCredit(String name, int increasement);
 	
 	//查询所有用户，并返回信息
-	public List<Location_noneedatnow> queryAllLocation();
+	public List<Location> queryAllLocation();
 	
 }

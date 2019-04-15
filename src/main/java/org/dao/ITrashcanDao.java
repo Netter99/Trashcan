@@ -3,8 +3,8 @@ package org.dao;
 import java.util.List;
 
 import org.entity.Account;
-import org.entity.Location_noneedatnow;
-import org.entity.Person;
+import org.entity.Location;
+import org.entity.AccountInformation;
 
 public interface ITrashcanDao {
 	//注册
@@ -23,7 +23,7 @@ public interface ITrashcanDao {
 	public List<Account> queryAllAccount();
 
 	//设置个人信息
-	public boolean setPerson(Person person);
+	public boolean setPerson(AccountInformation selfInformation);
 	
 	//获取用户积分
 	public int getAccountCredit(String name);
@@ -38,7 +38,7 @@ public interface ITrashcanDao {
 	public boolean addAccountThrowtime();
 	
 	//查询所有垃圾桶位置
-	public List<Location_noneedatnow> queryAllLocation();
+	public List<Location> queryAllLocation();
 	
 	
 }

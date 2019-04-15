@@ -1,15 +1,20 @@
 package org.entity;
 
-public class Location_noneedatnow {
-    Double longitude;
-    Double latitude;
+public class Location {
+    private String aname;
+    private Double longitude;
+    private Double latitude;
 
-    public Location_noneedatnow() {
+    public Location() {
     }
 
-    public Location_noneedatnow(Double longitude, Double latitude) {
+    public Location(Double longitude, Double latitude) {
         this.longitude = longitude;
         this.latitude = latitude;
+    }
+
+    public String getAname() {
+        return aname;
     }
 
     public Double getLongitude() {

@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.entity.Location_noneedatnow;
+import org.entity.Location;
 import org.service.ITrashcanService;
 import org.service.Impl.TrashcanServiceImpl;
 
@@ -22,7 +22,7 @@ public class LocationServlet extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ITrashcanService trashcanService = new TrashcanServiceImpl();
-		List<Location_noneedatnow> locations = trashcanService.queryAllLocation();
+		List<Location> locations = trashcanService.queryAllLocation();
 		
 	}
 

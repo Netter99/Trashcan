@@ -1,19 +1,26 @@
 package org.entity;
 
 public class Account {
-	String name;
-	String pwd;
+	private String openid;
+	private String aname;
+	private String pwd;
 	
 	public Account(){}
-	public Account(String name, String pwd) {
-		this.name = name;
+
+	public Account(String aname, String pwd) {
+		this.aname = aname;
 		this.pwd = pwd;
 	}
-	public String getName() {
-		return name;
+	public String getAname() {
+		return aname;
 	}
-	public void setName(String name) {
-		this.name = name;
+
+	public String getOpenid() {
+		return openid;
+	}
+
+	public void setaname(String aname) {
+		this.aname = aname;
 	}
 	public String getPwd() {
 		return pwd;
