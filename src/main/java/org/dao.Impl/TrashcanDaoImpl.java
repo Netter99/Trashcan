@@ -11,7 +11,16 @@ import org.entity.AccountInformation;
 import org.util.DBUtil;
 
 public class TrashcanDaoImpl implements ITrashcanDao{
+	/*
+	 * Dao的所有方法都是无逻辑的，直接执行，不进行判断
+	 * 在Service层，进行对Dao方法的调用与判断
+	 */
 
+	/* 疑问：
+	 *
+	 * 需不需要所有返回值为true/false的方法，都按照int值作为返回结果，来分三种情况
+	 * 即：成功、失败、出错
+	 */
 	@Override//注册
 	public boolean Register(Account account) {
 		ResultSet rs = null;
@@ -27,16 +36,11 @@ public class TrashcanDaoImpl implements ITrashcanDao{
 		}
 	}
 
-	/*
-	 * 登陆分三种情况  
-	 * 1:正常登陆; 0:密码错误; -1:此用户不存在
-	 */
 	@Override//登陆
 	public int Login(Account account) {
 		ResultSet rs = null;
-		int status = -1;
+		int status = 0;
 		try {
-			status = 0;
 			String sql = "select * from account where aname=? and pwd=?";
 			Object[] params = {account.getAname(),account.getPwd()};
 			rs = DBUtil.executeQuery(sql, params);
@@ -48,59 +52,62 @@ public class TrashcanDaoImpl implements ITrashcanDao{
 			return status;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return status;
+			return -1;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
 		}finally {
 			DBUtil.closeAll(rs, null, null);
 		}
 	}
 
-	@Override//存在则返回真，否则为假
+	@Override//查看用户是否存在
 	public boolean isExist(String name) {
-		Account account = queryAccountBySno(name);
-		return  account == null;
-	}
-
-	@Override//返回账户信息
-	public Account queryAccountBySno(String name) {
 		ResultSet rs = null;
-		Account account = null;
+		boolean isexist = false;
 		try {
 			String sql = "select * from account where aname=?";
 			Object[] params = {name};
 			rs = DBUtil.executeQuery(sql, params);
 			if(rs != null){
-				if(rs.next()) {
-					String aname = rs.getString("aname");
-					String pwd = rs.getString("pwd");
-					account = new Account(aname, pwd);
-				}
+				isexist = true;
 			}
-			return account;
-		} catch (SQLException e) {
+			return isexist;
+		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			return false;
 		}finally {
 			DBUtil.closeAll(rs, null, null);
 		}
 	}
 
-	@Override//查询所有账户
-	public List<Account> queryAllAccount() {
+	@Override//返回账户信息
+	public AccountInformation queryAccountByAname(String name) {
 		ResultSet rs = null;
-		List<Account> accounts = null;
+		AccountInformation ainfo = null;
 		try {
-			String sql = "select * from account";
-			rs = DBUtil.executeQuery(sql, null);
+			String sql = "select * from Information where aname=?";
+			Object[] params = {name};
+			rs = DBUtil.executeQuery(sql, params);
 			if(rs != null){
-				while(rs.next()) {
-					String aname = rs.getString("aname");
-					String pwd = rs.getString("pwd");
-					Account account = new Account(aname, pwd);
-					accounts.add(account);
-				}
+				String aname = name;
+				String no = rs.getString("sno");
+				String sex = rs.getString("sex");
+				String school = rs.getString("school");
+				String major = rs.getString("major");
+				String sclass = rs.getString("sclass");
+				ainfo.setname(name);
+				ainfo.setsno(no);
+				ainfo.setSex(sex);
+				ainfo.setSchool(school);
+				ainfo.setMajor(major);
+				ainfo.setSclass(sclass);
 			}
-			return accounts;
+			return ainfo;
 		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}finally {
@@ -108,7 +115,30 @@ public class TrashcanDaoImpl implements ITrashcanDao{
 		}
 	}
 
-	@Override//查询分数
+	@Override//设置账户信息
+	public boolean setAccountInformation(AccountInformation info) {
+		boolean success = false;
+		AccountInformation ainfo = null;
+		try {
+			String aname = info.getAname();
+			String sno = info.getsno();
+			String sex =  info.getSex();
+			String school = info.getSchool();
+			String major = info.getMajor();
+			String sclass = info.getSclass();
+			String sql = "insert into Information values(?,?,?,?,?,?)";
+			Object[] params = {aname,sno,sex,school,major,sclass};
+			success = DBUtil.executeUpdate(sql,params);
+			return success;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}finally {
+			DBUtil.closeAll(null, null, null);
+		}
+	}
+
+	@Override//查询积分
 	public int getAccountCredit(String name) {
 		ResultSet rs = null;
 		int acredit = 0;
@@ -125,43 +155,74 @@ public class TrashcanDaoImpl implements ITrashcanDao{
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return -1;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
 		}finally {
 			DBUtil.closeAll(rs, null, null);
 		}
 	}
 
-	@Override//增加积分--未完成
-	public boolean addAcoountCredit(String nameString ,int increasement) {
-		ResultSet rs = null;
-		int acredit = 0;
+	@Override//增加积分
+	public int addAcoountCredit(String name , int increasement) {
+		int credit = -1;
+		boolean success = false;
 		try {
 			String sql = "update credit set credit=credit+? where name=?";
-			Object[] params = {increasement,nameString};
-			return DBUtil.executeUpdate(sql, params);
+			Object[] params = {increasement,name};
+			success = DBUtil.executeUpdate(sql, params);
+			if(success){
+				credit = getAccountCredit(name)+increasement;
+			}
+			return credit;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		}finally {
+			DBUtil.closeAll(null, null, null);
+		}
+	}
+
+	@Override//查询投放次数
+	public int getAccountThrowtime(String name) {
+		ResultSet rs = null;
+		int times = -1;
+		try {
+			String sql = "select * from throwtimes where name=?";
+			Object[] parms = {name};
+			rs = DBUtil.executeQuery(sql,parms);
+			if(rs != null){
+				if(rs.next()) {
+					times = rs.getInt("credit");
+				}
+			}
+			return times;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return -1;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		}finally {
+			DBUtil.closeAll(rs, null, null);
+		}
+	}
+
+	@Override//增加投放次数
+	public boolean addAccountThrowtime(String name) {
+		int credit = -1;
+		boolean success = false;
+		try {
+			String sql = "update throwtimes set times=times+1 where name=?";
+			Object[] params = {name};
+			success = DBUtil.executeUpdate(sql, params);
+			return success;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}finally {
-			DBUtil.closeAll(rs, null, null);
+			DBUtil.closeAll(null, null, null);
 		}
-	}
-
-
-	@Override//设置账户信息
-	public boolean setPerson(AccountInformation selfInformation) {//
-		return false;
-	}
-
-	@Override//查询投放次数
-	public int getAccountThrowtime() {//
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override//增加投放次数
-	public boolean addAccountThrowtime() {//
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 	@Override//获取坐标
@@ -182,12 +243,34 @@ public class TrashcanDaoImpl implements ITrashcanDao{
 			return locations;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return locations;
+			return null;
 		}finally {
 			DBUtil.closeAll(rs, null, null);
 		}
 	}
-	
-	
-	
+
+	@Override//兑换商品
+	public int changeGoods(String name,int ncredit) {
+		int success = 0;
+		try {
+			int credit = getAccountCredit(name);
+			if(credit > ncredit){
+				String sql = "update credit set credit=credit-? where name=?";
+				Object[] params = {ncredit,name};
+				if(DBUtil.executeUpdate(sql, params)){
+					success = 1;
+				}else {
+					success = -1;
+				}
+			}
+			return success;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		}finally {
+			DBUtil.closeAll(null, null, null);
+		}
+	}
+
+
 }
