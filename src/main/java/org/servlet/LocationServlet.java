@@ -19,13 +19,14 @@ public class LocationServlet extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
-    
+
+    @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ITrashcanService trashcanService = new TrashcanServiceImpl();
 		List<Location> locations = trashcanService.queryAllLocation();
 		
 	}
-
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}

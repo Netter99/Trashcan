@@ -9,7 +9,7 @@ import java.sql.SQLException;
 //通用的数据操作方法
 public class DBUtil {
 
-		private static final String URL = "jdbc:mysql://127.0.0.1:3306/test";
+		private static final String URL = "jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&serverTimezone=Asia/Shanghai&characterEncoding=UTF-8&useSSL=false";
 		private static final String USERNAME = "root";
 		private static final String PASSWORD = "123456";
 		public static Connection connection = null;
