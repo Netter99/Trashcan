@@ -29,4 +29,11 @@ public interface WebUserService {
      */
     boolean verifyAcoount(String username,String password);
 
+    /**
+     * 根据用户名获取id
+     * @param username
+     * @return
+     */
+    int getUserIdByUsername(String username);
+
 }

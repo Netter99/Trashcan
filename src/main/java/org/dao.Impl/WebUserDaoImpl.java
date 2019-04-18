@@ -75,4 +75,21 @@ public class WebUserDaoImpl implements WebUserDao {
         }
         return null;
     }
+
+    @Override
+    public int getUserIdByUsername(String username) {
+        String sql = "select id from user_login where username = ?";
+        Object[] params = {username};
+        ResultSet resultSet = DBUtil.executeQuery(sql, params);
+        if(resultSet != null){
+            try {
+                resultSet.next();
+                return resultSet.getInt("id");
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return -1;
+            }
+        }
+        return -1;
+    }
 }

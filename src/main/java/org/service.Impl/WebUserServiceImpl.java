@@ -69,6 +69,11 @@ public class WebUserServiceImpl implements WebUserService {
         }
     }
 
+    @Override
+    public int getUserIdByUsername(String username) {
+        return 0;
+    }
+
     private static byte[] generateSalt(){
         byte[] salt = new byte[16];
         try {
