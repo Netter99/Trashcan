@@ -7,6 +7,13 @@ package org.service;
 public interface WebUserService {
 
     /**
+     * 用户名是否存在
+     * @param username
+     * @return
+     */
+    boolean isUsernameExisted(String username);
+
+    /**
      * 添加用户网页端登录的账号、密码
      * @param id 用户id
      * @param username

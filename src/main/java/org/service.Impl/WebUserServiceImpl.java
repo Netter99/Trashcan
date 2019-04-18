@@ -30,6 +30,11 @@ public class WebUserServiceImpl implements WebUserService {
     WebUserDao webUserDao = new WebUserDaoImpl();
 
     @Override
+    public boolean isUsernameExisted(String username) {
+        return webUserDao.usernameExisted(username);
+    }
+
+    @Override
     public boolean setUser(int id,String username, String password) {
         byte[] saltBytes = generateSalt();
         SimpleHash simpleHash = new SimpleHash(ALGORITH_NAME,password,saltBytes,ENCRYPT_NUM);
