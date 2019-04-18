@@ -36,4 +36,11 @@ public interface WebUserDao {
      * @return
      */
     String getPsdByUsername(String username);
+
+    /**
+     * 根据用户名获取用户id
+     * @param username
+     * @return
+     */
+    int getUserIdByUsername(String username);
 }
