@@ -15,4 +15,16 @@
     <url-pattern>/weblogin</url-pattern>
   </servlet-mapping>
 
+
+  <servlet>
+    <servlet-name>TestServlet</servlet-name>
+    <servlet-class>org.servlet.TestServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>TestServlet</servlet-name>
+    <url-pattern>/test</url-pattern>
+  </servlet-mapping>
+
+
 </web-app>

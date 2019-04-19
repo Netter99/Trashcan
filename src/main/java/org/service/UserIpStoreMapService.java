@@ -31,6 +31,26 @@ public class UserIpStoreMapService {
     }
 
     /**
+     * ip是否已保存
+     * @param ip
+     * @return
+     */
+    public static boolean isIpExist(String ip){
+        if(ipMap == null){
+            return false;
+        }
+        return ipMap.containsKey(ip);
+    }
+
+    /**
+     * 根据用户id查询ip
+     * @param ip
+     * @return
+     */
+    public static int getUserIdByIP(String ip){
+        return ipMap.get(ip);
+    }
+    /**
      * 移除用户ip
      * @param ip
      */
