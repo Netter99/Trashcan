@@ -71,7 +71,8 @@ public class WebUserServiceImpl implements WebUserService {
 
     @Override
     public int getUserIdByUsername(String username) {
-        return 0;
+        int id = webUserDao.getUserIdByUsername(username);
+        return id;
     }
 
     private static byte[] generateSalt(){

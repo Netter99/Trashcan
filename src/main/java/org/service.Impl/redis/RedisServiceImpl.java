@@ -2,6 +2,7 @@ package org.service.Impl.redis;
 
 import org.service.RedisService;
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.params.SetParams;
 
 /**
@@ -14,27 +15,31 @@ public class RedisServiceImpl implements RedisService {
     public boolean set(String key, String value) {
         Jedis jedis = MyJedisPool.getJedis();
         jedis.select(2);
-        if(jedis.exists(key)){
+        if (jedis.exists(key)) {
             jedis.del(key);
         }
-        jedis.set(key,value);
+        jedis.set(key, value);
+        MyJedisPool.releaseJedis(jedis);
         return true;
     }
 
     @Override
     public boolean keyExists(String key) {
         Jedis jedis = MyJedisPool.getJedis();
-        return jedis.exists(key);
+        boolean b = jedis.exists(key);
+        MyJedisPool.releaseJedis(jedis);
+        return b;
     }
 
     @Override
     public boolean set(String key, String value, Long expire) {
         Jedis jedis = MyJedisPool.getJedis();
         jedis.select(2);
-        if(jedis.exists(key)){
+        if (jedis.exists(key)) {
             jedis.del(key);
         }
-        jedis.set(key,value,new SetParams().nx().px(expire));
+        jedis.set(key, value,new SetParams().nx().px(expire));
+        MyJedisPool.releaseJedis(jedis);
         return true;
     }
 }
