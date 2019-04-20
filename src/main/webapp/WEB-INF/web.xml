@@ -4,4 +4,27 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+
+  <servlet>
+    <servlet-name>WebLoginSerlvet</servlet-name>
+    <servlet-class>org.servlet.WebLoginSerlvet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>WebLoginSerlvet</servlet-name>
+    <url-pattern>/weblogin</url-pattern>
+  </servlet-mapping>
+
+
+  <servlet>
+    <servlet-name>TestServlet</servlet-name>
+    <servlet-class>org.servlet.TestServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>TestServlet</servlet-name>
+    <url-pattern>/test</url-pattern>
+  </servlet-mapping>
+
+
 </web-app>

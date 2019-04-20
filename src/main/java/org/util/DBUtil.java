@@ -1,24 +1,20 @@
 package org.util;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 //通用的数据操作方法
 public class DBUtil {
 
-		private static final String URL = "jdbc:mysql://127.0.0.1:3306/test";
-		private static final String USERNAME = "root";
-		private static final String PASSWORD = "123456";
+		private static final String URL = "jdbc:mysql://47.106.159.165:3306/trashcan?useUnicode=true&serverTimezone=Asia/Shanghai&characterEncoding=UTF-8&useSSL=false";
+		private static final String USERNAME = "admin";
+		private static final String PASSWORD = "Zsw990807@@00";
 		public static Connection connection = null;
 		public static PreparedStatement pstmt = null;
 		public static ResultSet rs = null;
 
 		//与服务器连接
 		public static Connection getConnection() throws ClassNotFoundException, SQLException {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			return DriverManager.getConnection(URL, USERNAME, PASSWORD);
 		}
 

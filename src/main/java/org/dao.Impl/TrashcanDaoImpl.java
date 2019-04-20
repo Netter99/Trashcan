@@ -1,16 +1,16 @@
 package org.dao.Impl;
 
+import org.dao.ITrashcanDao;
+import org.entity.Account;
+import org.entity.AccountInformation;
+import org.entity.Location;
+import org.util.DBUtil;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import org.dao.ITrashcanDao;
-import org.entity.Account;
-import org.entity.Location;
-import org.entity.AccountInformation;
-import org.util.DBUtil;
-
-public class TrashcanDaoImpl implements ITrashcanDao{
+public class TrashcanDaoImpl implements ITrashcanDao {
 
 	@Override//注册
 	public boolean Register(Account account) {

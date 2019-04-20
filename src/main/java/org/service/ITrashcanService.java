@@ -1,9 +1,9 @@
 package org.service;
 
-import java.util.List;
-
 import org.entity.Account;
 import org.entity.Location;
+
+import java.util.List;
 
 public interface ITrashcanService {
 	//注册
