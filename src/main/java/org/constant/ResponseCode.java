@@ -24,7 +24,12 @@ public enum ResponseCode {
     /**
      * 账号其他地方登陆
      */
-    LOGIN_OTHER(2)
+    LOGIN_OTHER(2),
+
+    /**
+     * 用户未登录
+     */
+    NOT_LOGIN(4);
     ;
 
 

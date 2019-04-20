@@ -68,7 +68,7 @@ public class WebLoginSerlvet extends HttpServlet {
         }else{
             int userId = webUserService.getUserIdByUsername(username);
             HttpSession session = req.getSession();
-            String ip = req.getParameter("myIp");
+            String ip = req.getParameter("ip");
             //sesssion保存用户Id
             session.setAttribute("userId",userId);
             //session保存用户ip
