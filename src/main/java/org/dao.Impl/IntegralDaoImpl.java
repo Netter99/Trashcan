@@ -36,6 +36,31 @@ public class IntegralDaoImpl implements IntegralDao {
         return -1;
     }
 
+    @Override
+    public int getUserLunchTime(int userId) {
+        String sql = "select launch_time from user_score where id = ?";
+        Object[] params = {userId};
+        ResultSet resultSet = DBUtil.executeQuery(sql, params);
+        if (resultSet != null) {
+            try {
+                resultSet.next();
+                int lunchTime = resultSet.getInt("launch_time");
+                return lunchTime;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return -1;
+            }
+        }
+        return -1;
+    }
+
+    @Override
+    public void setLunchTime(int userId, int launchTime) {
+        String sql = "update user_score set launch_time = ? where id = ?";
+        Object[] params = {launchTime,userId};
+        DBUtil.executeUpdate(sql,params);
+    }
+
     public static void main(String[] args) {
         IntegralDaoImpl integralDao = new IntegralDaoImpl();
         System.out.println("------");

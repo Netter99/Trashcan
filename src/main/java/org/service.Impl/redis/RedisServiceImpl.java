@@ -27,6 +27,7 @@ public class RedisServiceImpl implements RedisService {
     @Override
     public boolean keyExists(String key) {
         Jedis jedis = MyJedisPool.getJedis();
+        jedis.select(2);
         boolean b = jedis.exists(key);
         MyJedisPool.releaseJedis(jedis);
         return b;
@@ -42,5 +43,17 @@ public class RedisServiceImpl implements RedisService {
         jedis.set(key, value,new SetParams().nx().px(expire));
         MyJedisPool.releaseJedis(jedis);
         return true;
+    }
+
+    @Override
+    public String get(String key) {
+        Jedis jedis = MyJedisPool.getJedis();
+        jedis.select(2);
+        if(!jedis.exists(key)){
+            return null;
+        }else{
+            String s = jedis.get(key);
+            return s;
+        }
     }
 }

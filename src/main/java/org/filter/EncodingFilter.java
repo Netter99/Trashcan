@@ -3,6 +3,8 @@ package org.filter;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.annotation.WebInitParam;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
@@ -24,10 +26,14 @@ public class EncodingFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
+        System.out.println("Encoding Filter");
         String encode = filterConfig.getInitParameter("charset");
-        req.setCharacterEncoding(encode);
-        resp.setCharacterEncoding(encode);
-        chain.doFilter(req, resp);
+        HttpServletRequest request = (HttpServletRequest) req;
+        HttpServletResponse response = (HttpServletResponse) resp;
+        request.setCharacterEncoding(encode);
+        response.setCharacterEncoding(encode);
+        response.setHeader("Content-type", "text/html;charset=UTF-8");
+        chain.doFilter(request, response);
     }
 
     @Override
