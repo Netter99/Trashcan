@@ -38,7 +38,7 @@ public class WebLoginSerlvet extends HttpServlet {
     private static Logger logger = LoggerFactory.getLogger(WebLoginSerlvet.class);
 
     private static final long serialVersionUID = -8752875050765355803L;
-    private static final String USER_LOGIN_PREFIX = "login:user:id:";
+    public static final String USER_LOGIN_PREFIX = "login:user:id:";
     /**
      * session过期时间为2小时
      */
