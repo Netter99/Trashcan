@@ -4,7 +4,7 @@ import org.constant.ResponseCode;
 import org.service.Impl.WebUserServiceImpl;
 import org.service.Impl.redis.RedisServiceImpl;
 import org.service.RedisService;
-import org.service.UserIpStoreMapService;
+import org.service.Impl.UserIpStoreMapService;
 import org.service.WebUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

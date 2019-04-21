@@ -17,14 +17,26 @@ public enum ResponseCode {
     REQUEST_SUCCEED(0),
 
     /**
+     * code 无效
+     */
+    ERROR_CODE(40029),
+
+    /**
      * 参数不合法
      */
     PARAM_ILEGALL(1),
 
+
     /**
      * 账号其他地方登陆
      */
-    LOGIN_OTHER(2)
+    LOGIN_OTHER(2),
+
+    /*
+     * 初次登陆，无用户名
+     */
+    NOT_SET_USERNAME(3)
+
     ;
 
 

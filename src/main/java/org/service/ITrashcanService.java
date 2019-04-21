@@ -20,5 +20,8 @@ public interface ITrashcanService {
 	
 	//查询所有用户，并返回信息
 	public List<Location> queryAllLocation();
-	
+
+	//获取Id
+	public int getId(String openid);
+
 }

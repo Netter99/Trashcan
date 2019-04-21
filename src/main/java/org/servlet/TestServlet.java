@@ -1,6 +1,6 @@
 package org.servlet;
 
-import org.service.UserIpStoreMapService;
+import org.service.Impl.UserIpStoreMapService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
