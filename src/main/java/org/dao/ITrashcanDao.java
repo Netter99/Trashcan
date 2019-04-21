@@ -8,6 +8,11 @@ import org.entity.Location;
 
 import java.util.List;
 
+
+import org.entity.Location;
+
+import java.util.List;
+
 public interface ITrashcanDao {
     //注册
 //	public boolean Register(Account account);

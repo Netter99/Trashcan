@@ -1,4 +1,4 @@
-package org.constant;
+﻿package org.constant;
 
 /**
  * @author zsw
@@ -22,7 +22,6 @@ public enum ResponseCode {
     ERROR_CODE(40029),
 
     /**
-
      * 参数不合法
      */
     PARAM_ILEGALL(1),

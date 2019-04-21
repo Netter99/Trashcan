@@ -1,3 +1,4 @@
+﻿
 ﻿package org.service;
 
 /**
@@ -15,9 +16,6 @@ public interface RedisService {
 
      boolean set(final String key, String value);
 
-     boolean set(final String key,String value);
-
-
     /**
      * key是否存在
      * @param key
@@ -34,8 +32,5 @@ public interface RedisService {
      */
 
      boolean set(final String key, String value, Long expire);
-
-     boolean set(final String key,String value,Long expire);
-
 
 }

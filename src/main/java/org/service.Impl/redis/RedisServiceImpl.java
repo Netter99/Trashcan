@@ -2,7 +2,6 @@ package org.service.Impl.redis;
 
 import org.service.RedisService;
 import redis.clients.jedis.Jedis;
-
 import redis.clients.jedis.JedisPool;
 
 import redis.clients.jedis.params.SetParams;

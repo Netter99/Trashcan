@@ -33,7 +33,6 @@ public class TrashcanDaoImpl implements ITrashcanDao{
 	 * 在Service层，进行对Dao方法的调用与判断
 	 */
 
-
 	/* 疑问：
 	 *
 	 * 需不需要所有返回值为true/false的方法，都按照int值作为返回结果，来分三种情况

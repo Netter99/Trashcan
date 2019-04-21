@@ -1,5 +1,6 @@
 ﻿package org.dao;
 
+
 /**
  * @author zsw
  * @date 2019/4/17 22:30
@@ -23,8 +24,6 @@ public interface WebUserDao {
      */
 
     boolean addUser(String username, String password, String salt, int id);
-
-    boolean addUser(String username,String password,String salt,int id);
 
 
     /**
