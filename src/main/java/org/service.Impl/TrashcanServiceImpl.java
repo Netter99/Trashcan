@@ -10,19 +10,22 @@ import java.util.List;
 
 public class TrashcanServiceImpl implements ITrashcanService {
 	ITrashcanDao trashcanDao = new TrashcanDaoImpl();
-	
+
 	@Override
 	public boolean Register(Account account) {
-		if(trashcanDao.isExist(account.getAname())) {
-			return false;
-		}else {
-			return trashcanDao.Register(account);
-		}
+//		if(trashcanDao.isExist(account.getAname())) {
+//			return false;
+//		}else {
+////			return trashcanDao.Register(account);
+//			return true;
+//		}
+        return  false;
 	}
 
 	@Override
 	public int Login(Account account) {
-		return trashcanDao.Login(account);
+//		return trashcanDao.Login(account);
+		return 1;
 	}
 
 	@Override
@@ -39,5 +42,11 @@ public class TrashcanServiceImpl implements ITrashcanService {
 	public List<Location> queryAllLocation() {
 		return trashcanDao.queryAllLocation();
 	}
+
+	@Override
+	public int getId(String openid) {
+		return 0;
+	}
+
 
 }

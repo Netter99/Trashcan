@@ -1,4 +1,4 @@
-package org.service.Impl;
+﻿package org.service.Impl;
 
 import org.apache.shiro.codec.Base64;
 import org.apache.shiro.crypto.hash.SimpleHash;
@@ -8,6 +8,13 @@ import org.service.WebUserService;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.util.Random;
+
 
 /**
  * @author zsw

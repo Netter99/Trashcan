@@ -21,7 +21,7 @@
 
   <dependencies>
 
-
+<<<<<<< HEAD
     <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
     <dependency>
       <groupId>mysql</groupId>
@@ -35,7 +35,7 @@
       <groupId>org.apache.shiro</groupId>
       <artifactId>shiro-core</artifactId>
       <version>1.4.0</version>
-
+=======
 
     <!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp -->
     <dependency>
@@ -59,7 +59,7 @@
       <groupId>com.alibaba</groupId>
       <artifactId>fastjson</artifactId>
       <version>1.2.57</version>
-
+>>>>>>> master
     </dependency>
 
     <!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
@@ -69,12 +69,14 @@
       <version>3.1.0-m1</version>
     </dependency>
 
+
+<<<<<<< HEAD
     <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
     <dependency>
       <groupId>com.alibaba</groupId>
       <artifactId>fastjson</artifactId>
       <version>1.2.57</version>
-
+=======
     <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
     <dependency>
       <groupId>mysql</groupId>
@@ -87,7 +89,7 @@
       <groupId>org.apache.shiro</groupId>
       <artifactId>shiro-core</artifactId>
       <version>1.4.0</version>
-
+>>>>>>> master
     </dependency>
 
     <!-- https://mvnrepository.com/artifact/javax.websocket/javax.websocket-api -->
@@ -98,7 +100,10 @@
       <scope>provided</scope>
     </dependency>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
