@@ -36,6 +36,7 @@
       <version>1.4.0</version>
 
 
+
     <!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp -->
     <dependency>
       <groupId>com.squareup.okhttp3</groupId>
@@ -80,7 +81,6 @@
       <groupId>org.apache.shiro</groupId>
       <artifactId>shiro-core</artifactId>
       <version>1.4.0</version>
-
     </dependency>
 
     <!-- https://mvnrepository.com/artifact/javax.websocket/javax.websocket-api -->

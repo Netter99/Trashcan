@@ -1,4 +1,5 @@
-﻿package org.dao;
+
+package org.dao;
 
 
 /**
@@ -22,9 +23,7 @@ public interface WebUserDao {
      * @param salt
      * @return
      */
-
     boolean addUser(String username, String password, String salt, int id);
-
 
     /**
      * 根据用户名获取盐值

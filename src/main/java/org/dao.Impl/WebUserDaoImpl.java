@@ -14,7 +14,6 @@ import java.sql.SQLException;
  * @date 2019/4/17 22:32
  */
 public class WebUserDaoImpl implements WebUserDao {
-
     @Override
     public boolean usernameExisted(String username) {
         String sql = "select count(*) rec from user_login where username = ?";

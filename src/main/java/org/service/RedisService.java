@@ -1,5 +1,5 @@
-﻿
-﻿package org.service;
+package org.service;
+
 
 /**
  * @author zsw
@@ -13,8 +13,8 @@ public interface RedisService {
      * @param value
      * @return
      */
-
      boolean set(final String key, String value);
+
 
     /**
      * key是否存在
@@ -30,7 +30,5 @@ public interface RedisService {
      * @param expire 过期时间，毫秒为单位
      * @return
      */
-
-     boolean set(final String key, String value, Long expire);
-
+     boolean set(final String key,String value,Long expire);
 }

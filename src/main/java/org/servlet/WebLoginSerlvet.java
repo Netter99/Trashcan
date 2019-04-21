@@ -1,29 +1,27 @@
-﻿
-﻿package org.servlet;
-
+package org.servlet;
 
 import org.constant.ResponseCode;
 import org.service.Impl.WebUserServiceImpl;
 import org.service.Impl.redis.RedisServiceImpl;
 import org.service.RedisService;
-
-
 import org.service.UserIpStoreMapService;
 import org.service.WebUserService;
-
-
 import org.service.Impl.UserIpStoreMapService;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-
 import org.util.JsonUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet
 
+import org.service.Impl.UserIpStoreMapService;
+import org.service.WebUserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.util.JsonUtil;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -84,8 +82,6 @@ public class WebLoginSerlvet extends HttpServlet {
         }else{
             int userId = webUserService.getUserIdByUsername(username);
             HttpSession session = req.getSession();
-
-
             String ip = req.getParameter("ip");
 
             //sesssion保存用户Id
@@ -102,7 +98,6 @@ public class WebLoginSerlvet extends HttpServlet {
             writer.write(json);
             return;
         }
-
 
     }
 }

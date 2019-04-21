@@ -1,6 +1,5 @@
 ﻿package org.dao.Impl;
 
-
 import org.dao.ITrashcanDao;
 import org.entity.Account;
 

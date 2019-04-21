@@ -1,5 +1,5 @@
-﻿
 ﻿package org.service;
+
 
 /**
  * @author zsw
@@ -20,8 +20,7 @@ public interface WebUserService {
      * @param username
      * @param password
      */
-
-    boolean setUser(int id,String username,String password);
+   boolean setUser(int id,String username,String password);
 
     /**
      * 验证用户名和密码是否匹配
@@ -29,8 +28,8 @@ public interface WebUserService {
      * @param password
      * @return
      */
-
     boolean verifyAcoount(String username, String password);
+
 
     /**
      * 根据用户名获取id

@@ -26,12 +26,10 @@ public enum ResponseCode {
      */
     PARAM_ILEGALL(1),
 
-
     /**
      * 账号其他地方登陆
      */
     LOGIN_OTHER(2),
-
 
     /**
      * 用户未登录
@@ -42,9 +40,7 @@ public enum ResponseCode {
      * 初次登陆，无用户名
      */
     NOT_SET_USERNAME(3)
-
     ;
-
 
     private int value;
 
