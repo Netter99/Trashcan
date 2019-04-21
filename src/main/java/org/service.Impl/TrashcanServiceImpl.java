@@ -1,14 +1,14 @@
 package org.service.Impl;
 
-import java.util.List;
-
 import org.dao.ITrashcanDao;
 import org.dao.Impl.TrashcanDaoImpl;
 import org.entity.Account;
 import org.entity.Location;
 import org.service.ITrashcanService;
 
-public class TrashcanServiceImpl implements ITrashcanService{
+import java.util.List;
+
+public class TrashcanServiceImpl implements ITrashcanService {
 	ITrashcanDao trashcanDao = new TrashcanDaoImpl();
 
 	@Override

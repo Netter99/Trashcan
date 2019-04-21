@@ -1,15 +1,14 @@
 package org.servlet;
 
-import java.io.IOException;
+import org.entity.Account;
+import org.service.ITrashcanService;
+import org.service.Impl.TrashcanServiceImpl;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import org.entity.Account;
-import org.service.ITrashcanService;
-import org.service.Impl.TrashcanServiceImpl;
+import java.io.IOException;
 
 /**
  * Servlet implementation class RegisterServlet

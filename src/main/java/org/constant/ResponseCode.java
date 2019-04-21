@@ -1,4 +1,4 @@
-package org.constant;
+﻿package org.constant;
 
 /**
  * @author zsw
@@ -26,19 +26,21 @@ public enum ResponseCode {
      */
     PARAM_ILEGALL(1),
 
-
     /**
      * 账号其他地方登陆
      */
     LOGIN_OTHER(2),
 
+    /**
+     * 用户未登录
+     */
+    NOT_LOGIN(4);
+
     /*
      * 初次登陆，无用户名
      */
     NOT_SET_USERNAME(3)
-
     ;
-
 
     private int value;
 

@@ -1,5 +1,6 @@
 package org.service;
 
+
 /**
  * @author zsw
  * @date 2019/4/18 20:13
@@ -12,7 +13,8 @@ public interface RedisService {
      * @param value
      * @return
      */
-     boolean set(final String key,String value);
+     boolean set(final String key, String value);
+
 
     /**
      * key是否存在
@@ -29,5 +31,4 @@ public interface RedisService {
      * @return
      */
      boolean set(final String key,String value,Long expire);
-
 }
