@@ -6,14 +6,20 @@ import org.service.Impl.redis.RedisServiceImpl;
 import org.service.RedisService;
 import org.service.UserIpStoreMapService;
 import org.service.WebUserService;
+//import org.service.Impl.UserIpStoreMapService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.util.JsonUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
+import org.service.WebUserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.util.JsonUtil;
 
-
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,21 +38,29 @@ public class WebLoginSerlvet extends HttpServlet {
     private static Logger logger = LoggerFactory.getLogger(WebLoginSerlvet.class);
 
     private static final long serialVersionUID = -8752875050765355803L;
-    public static final String USER_LOGIN_PREFIX = "login:user:id:";
+    private static final String USER_LOGIN_PREFIX = "login:user:id:";
     /**
      * session过期时间为2小时
      */
     private static final long SESSION_EXPIRE_TIME = 1000 * 60 * 60 * 2;
 
     @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doPost(req,resp);
+    }
+
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setCharacterEncoding("UTF-8");
         Map<String,Object> map = new HashMap<>(16);
         String username =req.getParameter("username");
+        System.out.println("username" + username);
         String password = req.getParameter("password");
+        System.out.println(password);
         WebUserService webUserService = new WebUserServiceImpl();
         RedisService redisService = new RedisServiceImpl();
         if(!webUserService.isUsernameExisted(username)){
+            System.out.println("用户名不存在");
             map.put("code", ResponseCode.PARAM_ILEGALL.getValue());
             map.put("msg","用户名或密码错误");
             String json = JsonUtil.mapToJson(map);

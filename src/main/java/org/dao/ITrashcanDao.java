@@ -1,6 +1,20 @@
 package org.dao;
+
+import org.entity.Account;
+import org.entity.AccountInformation;
 import org.entity.Location;
+
 import java.util.List;
+
+import org.entity.Location;
+
+import java.util.List;
+
+
+import org.entity.Location;
+
+import java.util.List;
+
 public interface ITrashcanDao {
     //注册
 //	public boolean Register(Account account);
@@ -47,10 +61,10 @@ public interface ITrashcanDao {
     public int addAcoountCredit(String name, int increasement);
 
     //获取用户累计垃圾丢弃数 -1:增加失败  0-无穷：正常
-    public int getAccountThrowtime(String name);
+    public int getAccountThrowtime(int id);
 
     //增加用户累计垃圾丢弃数
-    public boolean addAccountThrowtime(String name);
+    public boolean addAccountThrowtime(int id);
 
     //查询所有垃圾桶位置		对所有用户共享
     public List<Location> queryAllLocation();

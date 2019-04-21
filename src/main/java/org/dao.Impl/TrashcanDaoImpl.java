@@ -1,17 +1,31 @@
 package org.dao.Impl;
 
-import okhttp3.HttpUrl;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 import org.dao.ITrashcanDao;
+import org.entity.Account;
+
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+
 import com.alibaba.fastjson.JSONObject;
+import okhttp3.HttpUrl;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
+import org.dao.ITrashcanDao;
+import org.entity.Location;
+
+import org.entity.AccountInformation;
 import org.entity.Location;
 import org.util.DBUtil;
+
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
 public class TrashcanDaoImpl implements ITrashcanDao{
 	/*
 	 * Dao的所有方法都是无逻辑的，直接执行，不进行判断
@@ -300,16 +314,16 @@ public class TrashcanDaoImpl implements ITrashcanDao{
 	}
 
 	@Override//查询投放次数
-	public int getAccountThrowtime(String name) {
+	public int getAccountThrowtime(int id) {
 		ResultSet rs = null;
 		int times = -1;
 		try {
-			String sql = "select * from throwtimes where name=?";
-			Object[] parms = {name};
+			String sql = "select launch_time from user_score where id=?";
+			Object[] parms = {id};
 			rs = DBUtil.executeQuery(sql,parms);
 			if(rs != null){
 				if(rs.next()) {
-					times = rs.getInt("credit");
+					times = rs.getInt("launch_time");
 				}
 			}
 			return times;
@@ -325,14 +339,12 @@ public class TrashcanDaoImpl implements ITrashcanDao{
 	}
 
 	@Override//增加投放次数
-	public boolean addAccountThrowtime(String name) {
-		int credit = -1;
+	public boolean addAccountThrowtime(int id) {
 		boolean success = false;
 		try {
-			String sql = "update throwtimes set times=times+1 where name=?";
-			Object[] params = {name};
-			success = DBUtil.executeUpdate(sql, params);
-			return success;
+			String sql = "update user_score set launch_time=launch_time+1 where id=?";
+			Object[] params = {id};
+			return DBUtil.executeUpdate(sql, params);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;

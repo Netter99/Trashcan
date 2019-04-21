@@ -36,11 +36,11 @@ public enum ResponseCode {
      */
     NOT_LOGIN(4),
 
-    /*
+    /**
      * 初次登陆，无用户名
      */
-    NOT_SET_USERNAME(3)
-    ;
+    NOT_SET_USERNAME(3);
+//    NOT_SET_USERNAME(3);
 
     private int value;
 
