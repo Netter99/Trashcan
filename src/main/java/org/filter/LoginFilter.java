@@ -23,7 +23,7 @@ import java.util.Map;
 @WebFilter(filterName = "LoginFilter",
         urlPatterns = "/*",
         initParams = {
-            @WebInitParam(name="unCheckUrls",value = "/webLogin"),
+            @WebInitParam(name="unCheckUrls",value = "/weblogin"),
         })
 public class LoginFilter implements Filter {
 

@@ -1,4 +1,4 @@
-﻿package org.service.Impl;
+package org.service.Impl;
 
 
 import org.apache.shiro.codec.Base64;
@@ -22,6 +22,11 @@ import java.util.Random;
  * @date 2019/4/17 21:58
  */
 public class WebUserServiceImpl implements WebUserService {
+
+    public static void main(String[] args) {
+        WebUserServiceImpl webUserService = new WebUserServiceImpl();
+        webUserService.setUser(4,"username","password");
+    }
 
     /**
      * 摘要生成算法

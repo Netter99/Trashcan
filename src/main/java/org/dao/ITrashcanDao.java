@@ -1,20 +1,6 @@
-﻿package org.dao;
-
-import org.entity.Account;
-import org.entity.AccountInformation;
+package org.dao;
 import org.entity.Location;
-
 import java.util.List;
-
-import org.entity.Location;
-
-import java.util.List;
-
-
-import org.entity.Location;
-
-import java.util.List;
-
 public interface ITrashcanDao {
     //注册
 //	public boolean Register(Account account);

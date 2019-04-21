@@ -1,4 +1,4 @@
-﻿package org.constant;
+package org.constant;
 
 /**
  * @author zsw
@@ -34,7 +34,7 @@ public enum ResponseCode {
     /**
      * 用户未登录
      */
-    NOT_LOGIN(4);
+    NOT_LOGIN(4),
 
     /*
      * 初次登陆，无用户名

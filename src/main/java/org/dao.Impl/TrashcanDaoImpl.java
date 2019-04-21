@@ -1,31 +1,17 @@
-﻿package org.dao.Impl;
+package org.dao.Impl;
 
-import org.dao.ITrashcanDao;
-import org.entity.Account;
-
-import java.io.IOException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.List;
-
-import com.alibaba.fastjson.JSONObject;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-
 import org.dao.ITrashcanDao;
-import org.entity.Location;
-
-import org.entity.AccountInformation;
-import org.entity.Location;
-import org.util.DBUtil;
-
-
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-
+import com.alibaba.fastjson.JSONObject;
+import org.entity.Location;
+import org.util.DBUtil;
 public class TrashcanDaoImpl implements ITrashcanDao{
 	/*
 	 * Dao的所有方法都是无逻辑的，直接执行，不进行判断
