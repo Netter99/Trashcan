@@ -15,7 +15,7 @@
 
   <servlet>
     <servlet-name>LoginServlet</servlet-name>
-    <servlet-class>org.servlet.FirstServlet</servlet-class>
+    <servlet-class>org.servlet.WxLoginServlet</servlet-class>
   </servlet>
 
   <servlet-mapping>
