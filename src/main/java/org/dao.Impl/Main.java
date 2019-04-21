@@ -1,13 +1,16 @@
 package org.dao.Impl;
 
+import org.websocket.WebSocketServerManager;
+
 public class Main {
 
     public static void main(String[] args) {
-        TrashcanDaoImpl trashcanDao = new TrashcanDaoImpl();
-        System.out.println("-----------------------");
-        trashcanDao.getMaxId();
-        System.out.println("sdas"+trashcanDao.getMaxId());
-        System.out.println("*****");
+        String str = "wxLogin";
+        String str1 = "wx";
+        String str2 = "sdjoiaj";
+        System.out.println(str.matches("^wx.*"));
+        System.out.println(str1.matches("^wx.*"));
+        System.out.println(str2.matches("^wx.*"));
     }
 
 }

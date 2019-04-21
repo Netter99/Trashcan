@@ -1,6 +1,9 @@
 package org.filter;
 
 import org.constant.ResponseCode;
+import org.service.Impl.redis.RedisServiceImpl;
+import org.service.RedisService;
+import org.servlet.WebLoginSerlvet;
 import org.util.JsonUtil;
 
 import javax.servlet.*;
@@ -23,7 +26,7 @@ import java.util.Map;
 @WebFilter(filterName = "LoginFilter",
         urlPatterns = "/*",
         initParams = {
-            @WebInitParam(name="unCheckUrls",value = "/weblogin"),
+            @WebInitParam(name="unCheckUrls",value = "/weblogin,/websocketTest,/websocket,/ws/bitcoinServer,/websocketTest"),
         })
 public class LoginFilter implements Filter {
 
@@ -35,6 +38,7 @@ public class LoginFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
+        System.out.println("LoginFilter");
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) resp;
         //获取请求路径
@@ -44,9 +48,7 @@ public class LoginFilter implements Filter {
         List<String> urls = Arrays.asList(unCheckUrls.split(","));
         //如果请求的路径不需要登录
         System.out.println("path:"+requestPath);
-        System.out.println(requestPath.matches(".*.(html|css|jsp|ico)&"));
-
-        if(urls.contains(requestPath) || requestPath.matches(".*(.html|.css|.jsp|.ico)$")){
+        if(urls.contains(requestPath) || requestPath.matches(".*(.html|.css|.jsp|.ico)$") || requestPath.matches("^wx.*")){
             chain.doFilter(req, resp);
         }else {
             HttpSession session = request.getSession();
@@ -59,11 +61,32 @@ public class LoginFilter implements Filter {
                 PrintWriter writer = response.getWriter();
                 writer.write(json);
                 return;
+            }else{
+                RedisService redisService = new RedisServiceImpl();
+                System.out.println(WebLoginSerlvet.USER_LOGIN_PREFIX + userId);
+                if(!redisService.keyExists(WebLoginSerlvet.USER_LOGIN_PREFIX + userId)){
+                    Map<String,Object> map = new HashMap<>(16);
+                    map.put("code",ResponseCode.PARAM_ILEGALL.getValue());
+                    map.put("msg","请求不合法");
+                    String json = JsonUtil.mapToJson(map);
+                    PrintWriter writer = response.getWriter();
+                    writer.write(json);
+                    return;
+                }
+                String sessionId = redisService.get(WebLoginSerlvet.USER_LOGIN_PREFIX + userId);
+                if(!session.getId().equals(sessionId)){
+                    Map<String,Object> map = new HashMap<>(16);
+                    map.put("code",ResponseCode.LOGIN_OTHER.getValue());
+                    map.put("msg","账号在其他地方登陆，你的登陆已失效");
+                    String json = JsonUtil.mapToJson(map);
+                    PrintWriter writer = response.getWriter();
+                    writer.write(json);
+                    return;
+                }
+                chain.doFilter(request,response);
             }
-            chain.doFilter(request,response);
         }
     }
-
     @Override
     public void init(FilterConfig config) throws ServletException {
         this.filterConfig = config;

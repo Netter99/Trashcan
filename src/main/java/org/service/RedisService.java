@@ -31,4 +31,11 @@ public interface RedisService {
      * @return
      */
      boolean set(final String key,String value,Long expire);
+
+    /**
+     * 从redis取出数据
+     * @param key
+     * @return
+     */
+     String get(final String key);
 }

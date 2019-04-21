@@ -1,12 +1,15 @@
 package org.servlet;
 
 import org.service.Impl.UserIpStoreMapService;
+import org.websocket.WebSocketServer;
+import org.websocket.WebSocketServerManager;
 
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
@@ -17,11 +20,8 @@ public class TestServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if(!UserIpStoreMapService.isIpExist("0.0.0.0")){
-            System.out.println("ip不存在");
-            return;
-        }
-        int id  = UserIpStoreMapService.getUserIdByIP("0.0.0.0");
-        System.out.println("IP:0.0.0.0 userId:" + UserIpStoreMapService.getUserIdByIP("0.0.0.0"));
+        WebSocketServerManager.broadCast("广播一下");
+        HttpSession reqSession = req.getSession();
+        WebSocketServerManager.sendMsgToUser((Integer) reqSession.getAttribute("userId"),"这是发给你的");
     }
 }

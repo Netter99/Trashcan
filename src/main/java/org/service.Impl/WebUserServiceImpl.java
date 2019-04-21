@@ -11,11 +11,6 @@ import org.service.WebUserService;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
-import java.util.Random;
 
 /**
  * @author zsw
@@ -25,7 +20,7 @@ public class WebUserServiceImpl implements WebUserService {
 
     public static void main(String[] args) {
         WebUserServiceImpl webUserService = new WebUserServiceImpl();
-        webUserService.setUser(4,"username","password");
+        webUserService.setUser(5,"username1","password");
     }
 
     /**
@@ -50,7 +45,6 @@ public class WebUserServiceImpl implements WebUserService {
         SimpleHash simpleHash = new SimpleHash(ALGORITH_NAME,password,saltBytes,ENCRYPT_NUM);
         String changPsd = simpleHash.toHex();
         String  salt = Base64.encodeToString(saltBytes);
-        System.out.println(salt);
         return webUserDao.addUser(username,changPsd,salt,id);
     }
 
@@ -58,11 +52,9 @@ public class WebUserServiceImpl implements WebUserService {
     public boolean verifyAcoount(String username, String password) {
 
         if(!webUserDao.usernameExisted(username)){
-            System.out.println("用户名不存在");
             return false;
         }
         else{
-            System.out.println("用户名存在");
             String salt = webUserDao.getSaltByUsername(username);
             byte[] saltBytes = Base64.decode(salt);
             String correctPsd = webUserDao.getPsdByUsername(username);
