@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+
+  <servlet>
+    <servlet-name>WebLoginSerlvet</servlet-name>
+    <servlet-class>org.servlet.WebLoginSerlvet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>WebLoginSerlvet</servlet-name>
+    <url-pattern>/weblogin</url-pattern>
+  </servlet-mapping>
+
+<<<<<<< HEAD
+=======
+  <servlet>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>org.servlet.WxLoginServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/LoginServlet</url-pattern>
+  </servlet-mapping>
+>>>>>>> master
+
+  <servlet>
+    <servlet-name>TestServlet</servlet-name>
+    <servlet-class>org.servlet.TestServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>TestServlet</servlet-name>
+    <url-pattern>/test</url-pattern>
+  </servlet-mapping>
+
+
+</web-app>

@@ -14,13 +14,43 @@
   </servlet-mapping>
 
   <servlet>
-    <servlet-name>LoginServlet</servlet-name>
-    <servlet-class>org.servlet.FirstServlet</servlet-class>
+    <servlet-name>WxLoginServlet</servlet-name>
+    <servlet-class>org.servlet.WxLoginServlet</servlet-class>
   </servlet>
 
   <servlet-mapping>
-    <servlet-name>LoginServlet</servlet-name>
-    <url-pattern>/LoginServlet</url-pattern>
+    <servlet-name>WxLoginServlet</servlet-name>
+    <url-pattern>/wxlogin</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>LaunchTimeServlet</servlet-name>
+    <servlet-class>org.servlet.LaunchTimeServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>LaunchTimeServlet</servlet-name>
+    <url-pattern>/wxlaunchtime</url-pattern>
+  </servlet-mapping>
+
+  <!--<servlet>-->
+    <!--<servlet-name>LoginServlet</servlet-name>-->
+    <!--<servlet-class>org.servlet.WxLoginServlet</servlet-class>-->
+  <!--</servlet>-->
+
+  <!--<servlet-mapping>-->
+    <!--<servlet-name>LoginServlet</servlet-name>-->
+    <!--<url-pattern>/LoginServlet</url-pattern>-->
+  <!--</servlet-mapping>-->
+
+  <servlet>
+    <servlet-name>AddAccountInfoServlet</servlet-name>
+    <servlet-class>org.servlet.AddAccountInfoServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>AddAccountInfoServlet</servlet-name>
+    <url-pattern>/wxaddaccountinfo</url-pattern>
   </servlet-mapping>
 
   <servlet>

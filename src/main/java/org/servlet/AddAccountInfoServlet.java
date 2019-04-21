@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 //设置用户名和密码的servlet
-public class OtherServlet extends HttpServlet {
+public class AddAccountInfoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("utf-8");

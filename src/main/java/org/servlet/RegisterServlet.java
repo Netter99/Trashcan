@@ -40,7 +40,7 @@ public class RegisterServlet extends HttpServlet {
 		boolean result = trashcanService.Register(account);//注册操作
 		
 		if(result) {//成功则跳转登陆
-			request.getRequestDispatcher("FirstServlet").forward(request, response);
+			request.getRequestDispatcher("WxLoginServlet").forward(request, response);
 		}else {
 			
 		}
