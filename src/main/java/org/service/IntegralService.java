@@ -20,4 +20,18 @@ public interface IntegralService {
      * @return
      */
     int getUserIntegral(int userId);
+
+    /**
+     * 增加投放次数
+     * @param userId
+     * @param addTime
+     */
+    void addLunchTime(int userId,int addTime);
+
+    /**
+     * 获取投放次数
+     * @param userId
+     * @return
+     */
+    int getLunchTime(int userId);
 }

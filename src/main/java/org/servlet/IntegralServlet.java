@@ -32,9 +32,11 @@ public class IntegralServlet extends HttpServlet {
         HttpSession session = request.getSession();
         Integer userId = (Integer) session.getAttribute("userId");
         int userIntegral = integralService.getUserIntegral(userId);
+        int lunchTime = integralService.getLunchTime(userId);
         Map<String,Object> map = new HashMap<>(16);
         map.put("code", ResponseCode.REQUEST_SUCCEED.getValue());
         map.put("integral",userIntegral);
+        map.put("lunchTime",lunchTime);
         String json = JsonUtil.mapToJson(map);
         PrintWriter writer = response.getWriter();
         writer.write(json);

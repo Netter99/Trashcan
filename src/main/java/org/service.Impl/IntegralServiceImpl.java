@@ -12,13 +12,6 @@ public class IntegralServiceImpl implements IntegralService {
 
     IntegralDao integralDao = new IntegralDaoImpl();
 
-    public static void main(String[] args) {
-        IntegralService integralService = new IntegralServiceImpl();
-        int userIntegral = integralService.getUserIntegral(1);
-        integralService.addIntegral(3,10);
-        System.out.println(userIntegral);
-    }
-
     @Override
     public boolean addIntegral(int userId, int score) {
         int preScore = this.getUserIntegral(userId);
@@ -33,5 +26,20 @@ public class IntegralServiceImpl implements IntegralService {
             integralDao.addUserIdToTable(userId);
         }
         return integralDao.getUserIntegral(userId);
+    }
+
+    @Override
+    public void addLunchTime(int userId, int addTime) {
+        int preTime = this.getLunchTime(userId);
+        addTime += preTime;
+        integralDao.setLunchTime(userId,addTime);
+    }
+
+    @Override
+    public int getLunchTime(int userId) {
+        if (!integralDao.isIdExist(userId)){
+            integralDao.addUserIdToTable(userId);
+        }
+        return integralDao.getUserLunchTime(userId);
     }
 }
