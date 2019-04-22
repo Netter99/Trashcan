@@ -25,7 +25,6 @@ import java.util.Map;
 )
 public class IntegralServlet extends HttpServlet {
     private static final long serialVersionUID = 3808376765078818797L;
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         IntegralService integralService = new IntegralServiceImpl();
