@@ -37,6 +37,11 @@ public class WebSocketServer {
     @OnMessage
     public void onMessage(String message, Session session) {
         System.out.println("来自客户端的消息:" + message);
+        try {
+            this.sendMessage("已收到来自客户端的消息:" + message);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @OnError
