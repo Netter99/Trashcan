@@ -39,8 +39,8 @@ public class TrashcanServiceImpl implements ITrashcanService {
 	}
 
 	@Override
-	public List<Location> queryAllLocation() {
-		return trashcanDao.queryAllLocation();
+	public List<Location> getAllLocation() {
+		return trashcanDao.getAllLocation();
 	}
 
 	@Override
