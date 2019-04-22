@@ -22,7 +22,7 @@ public class LocationServlet extends HttpServlet {
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ITrashcanService trashcanService = new TrashcanServiceImpl();
-		List<Location> locations = trashcanService.queryAllLocation();
+		List<Location> locations = trashcanService.getAllLocation();
 		
 	}
 	@Override

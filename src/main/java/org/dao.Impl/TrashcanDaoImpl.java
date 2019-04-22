@@ -354,16 +354,16 @@ public class TrashcanDaoImpl implements ITrashcanDao{
 	}
 
 	@Override//获取坐标
-	public List<Location> queryAllLocation() {
+	public List<Location> getAllLocation() {
 		ResultSet rs = null;
 		List<Location> locations = null;
 		try {
-			String sql = "select * from location";
+			String sql = "select longitude,latitude from can_infor";
 			rs = DBUtil.executeQuery(sql, null);
 			if(rs != null){
 				while(rs.next()) {
-					Double lo = rs.getDouble("logitude");
-					Double la = rs.getDouble("latitude");
+					String lo = rs.getString("longitude");
+					String la = rs.getString("latitude");
 					Location location = new Location(lo, la);
 					locations.add(location);
 				}

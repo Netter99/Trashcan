@@ -58,7 +58,7 @@ public interface ITrashcanDao {
     public boolean addAccountThrowtime(int id);
 
     //查询所有垃圾桶位置		对所有用户共享
-    public List<Location> queryAllLocation();
+    public List<Location> getAllLocation();
 
     //兑换商品
     public int changeGoods(String name, int ncredit);
