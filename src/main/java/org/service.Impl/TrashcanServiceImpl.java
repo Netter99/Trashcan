@@ -33,10 +33,10 @@ public class TrashcanServiceImpl implements ITrashcanService {
 		return 0;
 	}
 
-	@Override
-	public void addAcoountCredit(String name,int increasement) {
-		trashcanDao.addAcoountCredit(name, increasement);
-	}
+//	@Override
+//	public void addAcoountCredit(String name,int increasement) {
+//		trashcanDao.addAcoountCredit(name, increasement);
+//	}
 
 	@Override
 	public List<Location> getAllLocation() {

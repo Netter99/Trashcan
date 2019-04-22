@@ -24,6 +24,12 @@ public interface ITrashcanDao {
     //添加用户名，密码
     public boolean addAccountNP(int id, String name, String pwd);
 
+    //修改密码
+    public boolean changePwd(int id, String pwd);
+
+    //查看密码是否正确
+    public boolean isOpwdCorrect(int id, String opwd);
+
     //根据openid获取此用户的id值
     public int getId(String openid);
 
@@ -45,11 +51,11 @@ public interface ITrashcanDao {
 //	//设置个人信息
 //	public boolean setAccountInformation(AccountInformation info);
 
-    //查询用户积分  -1:查询失败 0-无穷：正常
-    public int getAccountCredit(String name);
-
-    //增加用户积分 并返回改变后数值  -1:增加失败  0-无穷：正常
-    public int addAcoountCredit(String name, int increasement);
+//    //获取用户积分
+//    public int getAccountCredit(int id);
+//
+//    //增加用户积分 并返回改变后数值  -1:增加失败  0-无穷：正常
+//    public int addAcoountCredit(String name, int increasement);
 
     //获取用户累计垃圾丢弃数 -1:增加失败  0-无穷：正常
     public int getAccountThrowtime(int id);
@@ -61,6 +67,6 @@ public interface ITrashcanDao {
     public List<Location> getAllLocation();
 
     //兑换商品
-    public int changeGoods(String name, int ncredit);
+    public boolean changeGoods(int id,int score);
 
 }
