@@ -38,4 +38,6 @@ public interface RedisService {
      * @return
      */
      String get(final String key);
+
+     void removeKey(final String key);
 }

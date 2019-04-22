@@ -3,7 +3,7 @@ package org.filter;
 import org.constant.ResponseCode;
 import org.service.Impl.redis.RedisServiceImpl;
 import org.service.RedisService;
-import org.servlet.WebLoginSerlvet;
+import org.servlet.WebLoginServlet;
 import org.util.JsonUtil;
 
 import javax.servlet.*;
@@ -41,6 +41,10 @@ public class LoginFilter implements Filter {
         System.out.println("LoginFilter");
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) resp;
+        request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");
+        response.setHeader("Content-type", "text/html;charset=UTF-8");
+
         //获取请求路径
         String requestPath = request.getServletPath();
         //获取不需要登录的url
@@ -63,8 +67,8 @@ public class LoginFilter implements Filter {
                 return;
             }else{
                 RedisService redisService = new RedisServiceImpl();
-                System.out.println(WebLoginSerlvet.USER_LOGIN_PREFIX + userId);
-                if(!redisService.keyExists(WebLoginSerlvet.USER_LOGIN_PREFIX + userId)){
+                System.out.println(WebLoginServlet.USER_LOGIN_PREFIX + userId);
+                if(!redisService.keyExists(WebLoginServlet.USER_LOGIN_PREFIX + userId)){
                     Map<String,Object> map = new HashMap<>(16);
                     map.put("code",ResponseCode.PARAM_ILEGALL.getValue());
                     map.put("msg","请求不合法");
@@ -73,7 +77,7 @@ public class LoginFilter implements Filter {
                     writer.write(json);
                     return;
                 }
-                String sessionId = redisService.get(WebLoginSerlvet.USER_LOGIN_PREFIX + userId);
+                String sessionId = redisService.get(WebLoginServlet.USER_LOGIN_PREFIX + userId);
                 if(!session.getId().equals(sessionId)){
                     Map<String,Object> map = new HashMap<>(16);
                     map.put("code",ResponseCode.LOGIN_OTHER.getValue());
