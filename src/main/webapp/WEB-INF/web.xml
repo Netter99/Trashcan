@@ -4,12 +4,12 @@
   <display-name>Archetype Created Web Application</display-name>
 
   <servlet>
-    <servlet-name>WebLoginSerlvet</servlet-name>
-    <servlet-class>org.servlet.WebLoginSerlvet</servlet-class>
+    <servlet-name>webLoginServlet</servlet-name>
+    <servlet-class>org.servlet.WebLoginServlet</servlet-class>
   </servlet>
 
   <servlet-mapping>
-    <servlet-name>WebLoginSerlvet</servlet-name>
+    <servlet-name>webLoginServlet</servlet-name>
     <url-pattern>/weblogin</url-pattern>
   </servlet-mapping>
 

@@ -56,4 +56,13 @@ public class RedisServiceImpl implements RedisService {
             return s;
         }
     }
+
+    @Override
+    public void removeKey(String key) {
+        if(this.keyExists(key)){
+            Jedis jedis = MyJedisPool.getJedis();
+            jedis.select(2);
+            jedis.del(key);
+        }
+    }
 }

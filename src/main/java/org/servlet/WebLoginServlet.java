@@ -13,13 +13,6 @@ import org.util.JsonUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
-import org.service.WebUserService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.util.JsonUtil;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,9 +26,9 @@ import java.util.Map;
  * @author zsw
  * @date 2019/4/18 21:21
  */
-public class WebLoginSerlvet extends HttpServlet {
+public class WebLoginServlet extends HttpServlet {
 
-    private static Logger logger = LoggerFactory.getLogger(WebLoginSerlvet.class);
+    private static Logger logger = LoggerFactory.getLogger(WebLoginServlet.class);
 
     private static final long serialVersionUID = -8752875050765355803L;
     public static final String USER_LOGIN_PREFIX = "login:user:id:";
