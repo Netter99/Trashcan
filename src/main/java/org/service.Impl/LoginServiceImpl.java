@@ -60,5 +60,15 @@ public class LoginServiceImpl implements LoginService {
         return trashcanDao.getMaxId();
     }
 
+    @Override
+    public boolean changePwd(int id, String pwd) {
+        return trashcanDao.changePwd(id, pwd);
+    }
+
+    @Override
+    public boolean isOpwdCorrect(int id, String opwd) {
+        return trashcanDao.isOpwdCorrect(id, opwd);
+    }
+
 
 }

@@ -26,4 +26,10 @@ public interface LoginService {
     //获取当前最大Id值
     public int getMaxId();
 
+    //修改密码
+    public boolean changePwd(int id, String pwd);
+
+    //查看旧密码是否正确
+    public boolean isOpwdCorrect(int id, String opwd);
+
 }

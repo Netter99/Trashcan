@@ -34,22 +34,22 @@ public class AddAccountInfoServlet extends HttpServlet {
             Map<String, Object> map = new HashMap<>();
 
             //设置用户名和密码
-            if(loginService.iUserNameExist(name) == false){//用户名不存在
+            if (loginService.iUserNameExist(name) == false) {//用户名不存在
                 int id = Integer.parseInt(session.getAttribute("id").toString());
                 boolean result = loginService.Register(id, name, pwd);
 
-                if(result == true){
+                if (result == true) {
                     session.removeAttribute("nameFlag");
                     map.put("request_result", ResponseCode.REQUEST_SUCCEED.getValue());
                     json = JsonUtil.mapToJson(map);
                     resp.getWriter().write(json);
-                }else {
-                    map.put("request_result", ResponseCode.PARAM_ILEGALL.getValue());
+                } else {
+                    map.put("request_result", ResponseCode.SERVER_ERROR.getValue());
                     json = JsonUtil.mapToJson(map);
                     resp.getWriter().write(json);
                 }
 
-            }else {
+            } else {
                 map.put("request_result", ResponseCode.PARAM_ILEGALL.getValue());
                 json = JsonUtil.mapToJson(map);
                 resp.getWriter().write(json);
