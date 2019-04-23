@@ -26,7 +26,7 @@ import java.util.Map;
 @WebFilter(filterName = "LoginFilter",
         urlPatterns = "/*",
         initParams = {
-            @WebInitParam(name="unCheckUrls",value = "/weblogin,/websocketTest,/websocket,/ws/bitcoinServer,/websocketTest"),
+            @WebInitParam(name="unCheckUrls",value = "/weblogin,/websocketTest,/test,/websocket,/ws/bitcoinServer,/websocketTest"),
         })
 public class LoginFilter implements Filter {
 
