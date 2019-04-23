@@ -43,7 +43,7 @@ public class UserIpStoreMapService {
     }
 
     /**
-     * 根据用户id查询ip
+     * 根据ip查询用户id
      * @param ip
      * @return
      */
