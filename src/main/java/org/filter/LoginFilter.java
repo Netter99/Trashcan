@@ -41,6 +41,7 @@ public class LoginFilter implements Filter {
         System.out.println("LoginFilter");
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) resp;
+        System.out.println("请求路径"+request.getRequestURL());
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
         response.setHeader("Content-type", "text/html;charset=UTF-8");

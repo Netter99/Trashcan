@@ -25,7 +25,8 @@ import java.util.Map;
  * <p>
  * 获取用户附近的智能垃圾桶
  */
-@WebServlet(name = "GetNearbyTrashCanServlet")
+@WebServlet(name = "GetNearbyTrashCanServlet",
+urlPatterns = "/getNearByCans")
 public class GetNearbyTrashCanServlet extends HttpServlet {
     private static final long serialVersionUID = 7790820323056287922L;
     CanService canService = new CanServiceImpl();
