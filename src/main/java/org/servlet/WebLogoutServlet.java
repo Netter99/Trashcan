@@ -3,6 +3,7 @@ package org.servlet;
 import org.constant.ResponseCode;
 import org.service.Impl.redis.RedisServiceImpl;
 import org.service.RedisService;
+import org.service.UserIpStoreMapService;
 import org.util.JsonUtil;
 
 import javax.servlet.ServletException;
@@ -32,9 +33,14 @@ public class WebLogoutServlet extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
         int userId = (int) session.getAttribute("userId");
+        String ip = (String) session.getAttribute("ip");
         session.removeAttribute("userId");
         session.removeAttribute("ip");
         redisService.removeKey(WebLoginServlet.USER_LOGIN_PREFIX+userId);
+
+        if(UserIpStoreMapService.isIpExist(ip) && UserIpStoreMapService.getUserIdByIP(ip) == userId){
+            UserIpStoreMapService.removeUserIp(ip);
+        }
         Map<String,Object> map = new HashMap<>();
         map.put("code", ResponseCode.REQUEST_SUCCEED.getValue());
         String json = JsonUtil.mapToJson(map);
