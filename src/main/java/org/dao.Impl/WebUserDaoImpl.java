@@ -15,6 +15,31 @@ import java.sql.SQLException;
  */
 public class WebUserDaoImpl implements WebUserDao {
     @Override
+    public boolean idExisted(int userId) {
+        String sql = "select count(*) rec from user_login where id = ?";
+        Object[] params = {userId};
+        ResultSet resultSet = DBUtil.executeQuery(sql, params);
+        if (resultSet != null) {
+            try {
+                resultSet.next();
+                int rec = resultSet.getInt("rec");
+                return rec == 1;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }
+        return false;
+    }
+
+    @Override
+    public boolean changPwdById(int userId, String password) {
+        String sql = "update user_login set password = ? where id = ?";
+        Object[] params = {password, userId};
+        return DBUtil.executeUpdate(sql, params);
+    }
+
+    @Override
     public boolean usernameExisted(String username) {
         String sql = "select count(*) rec from user_login where username = ?";
         Object[] params = {username};
@@ -84,7 +109,7 @@ public class WebUserDaoImpl implements WebUserDao {
         String sql = "select id from user_login where username = ?";
         Object[] params = {username};
         ResultSet resultSet = DBUtil.executeQuery(sql, params);
-        if(resultSet != null){
+        if (resultSet != null) {
             try {
                 resultSet.next();
                 return resultSet.getInt("id");

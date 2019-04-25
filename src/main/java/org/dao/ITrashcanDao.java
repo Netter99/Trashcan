@@ -19,7 +19,7 @@ public interface ITrashcanDao {
 //	public int Login(String username,String password);
 
     //添加openId
-    public boolean addOpenId(int id,String openid);
+    public boolean addOpenId(String openid);
 
     //添加用户名，密码
     public boolean addAccountNP(int id, String name, String pwd);
@@ -40,7 +40,7 @@ public interface ITrashcanDao {
     public String getOpenId(String code);
 
     //查openid
-    public boolean isOpenIdExist(String code);
+    public boolean isOpenIdExist(String openid);
 
     //查看用户名是否存在
     public boolean isNameExist(String name);

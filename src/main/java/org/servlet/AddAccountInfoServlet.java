@@ -24,42 +24,49 @@ public class AddAccountInfoServlet extends HttpServlet {
 
         LoginService loginService = new LoginServiceImpl();
         HttpSession session = req.getSession();
+
+        //test
+        session.setAttribute("nameFlag", "1");
+
         Object nameFlag = session.getAttribute("nameFlag");
 
 //        int id = (int)session.getAttribute("id");
         String json = null;
-        if (nameFlag != null) {//已经验证过code是有效的，并且用户没有设置过用户名和密码
-            String name = req.getParameter("username");
-            String pwd = req.getParameter("password");
-            Map<String, Object> map = new HashMap<>();
+        System.out.println("nameFlag:" + nameFlag);
+//        if (nameFlag != null) {//已经验证过code是有效的，并且用户没有设置过用户名和密码
+        String name = req.getParameter("username");
+        String pwd = req.getParameter("password");
+        System.out.println("name:" + name);
+        System.out.println("pwd:" + pwd);
+        Map<String, Object> map = new HashMap<>();
 
-            //设置用户名和密码
-            if (loginService.iUserNameExist(name) == false) {//用户名不存在
-                int id = Integer.parseInt(session.getAttribute("id").toString());
-                boolean result = loginService.Register(id, name, pwd);
+        //设置用户名和密码
+        if (loginService.iUserNameExist(name) == false) {//用户名不存在
+            int id = Integer.parseInt(session.getAttribute("id").toString());
+            boolean result = loginService.Register(id, name, pwd);
 
-                if (result == true) {
-                    session.removeAttribute("nameFlag");
-                    map.put("request_result", ResponseCode.REQUEST_SUCCEED.getValue());
-                    json = JsonUtil.mapToJson(map);
-                    resp.getWriter().write(json);
-                } else {
-                    map.put("request_result", ResponseCode.SERVER_ERROR.getValue());
-                    json = JsonUtil.mapToJson(map);
-                    resp.getWriter().write(json);
-                }
-
+            if (result == true) {
+                session.removeAttribute("nameFlag");
+                map.put("REQUEST_SUCCEED", ResponseCode.REQUEST_SUCCEED.getValue());
+                json = JsonUtil.mapToJson(map);
+                resp.getWriter().write(json);
             } else {
-                map.put("request_result", ResponseCode.PARAM_ILEGALL.getValue());
+                map.put("SERVER_ERROR", ResponseCode.SERVER_ERROR.getValue());
                 json = JsonUtil.mapToJson(map);
                 resp.getWriter().write(json);
             }
+
         } else {
-            Map<String, Object> map = new HashMap<>();
-            map.put("error", ResponseCode.SERVER_ERROR.getValue());
+            map.put("PARAM_ILEGALL", ResponseCode.PARAM_ILEGALL.getValue());
             json = JsonUtil.mapToJson(map);
             resp.getWriter().write(json);
         }
+//        } else {
+//            Map<String, Object> map = new HashMap<>();
+//            map.put("NOT_LOGIN", ResponseCode.NOT_LOGIN.getValue());
+//            json = JsonUtil.mapToJson(map);
+//            resp.getWriter().write(json);
+//        }
 
     }
 

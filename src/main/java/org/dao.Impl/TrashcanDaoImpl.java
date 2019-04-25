@@ -81,11 +81,11 @@ public class TrashcanDaoImpl implements ITrashcanDao {
     private String appsecret = "faa5399b82ce6bf43e2f99e58ea6c5b8";
 
     @Override
-    public boolean addOpenId(int id, String openid) {
+    public boolean addOpenId(String openid) {
         boolean success = false;
         try {
-            String sql = "insert into user_login(id,openid) values(id=?,openid=?)";
-            Object[] params = {id, openid};
+            String sql = "insert into user_login(openid) values(openid=?)";
+            Object[] params = {openid};
             return DBUtil.executeUpdate(sql, params);
 
         } catch (Exception e) {
@@ -130,11 +130,18 @@ public class TrashcanDaoImpl implements ITrashcanDao {
     public boolean isOpwdCorrect(int id, String opwd) {
         ResultSet rs = null;
         try {
-            String sql = "select count(*) from user_login where id=? and password=?";
+            String sql = "select count(*) num from user_login where id=? and password=?";
             Object[] params = {id,opwd};
             rs = DBUtil.executeQuery(sql, params);
             if (rs != null) {
-                return true;
+                rs.next();
+                int num = rs.getInt("num");
+                System.out.println("number!!!:"+num);
+                if(num > 0 ){
+                    return true;
+                }else {
+                    return false;
+                }
             }else {
                 return false;
             }
@@ -157,6 +164,7 @@ public class TrashcanDaoImpl implements ITrashcanDao {
             if (rs != null) {
                 rs.next();
                 id = rs.getInt("id");
+                System.out.println("ID!!!:" + id);
             }
             return id;
         } catch (Exception e) {
@@ -219,16 +227,21 @@ public class TrashcanDaoImpl implements ITrashcanDao {
     }
 
     @Override
-    public boolean isOpenIdExist(String code) {
+    public boolean isOpenIdExist(String openid) {
         ResultSet rs = null;
         boolean isexist = false;
         try {
-            String tempcode = getOpenId(code);
-            String sql = "select count(1) from user_login where openid=?";
-            Object[] params = {tempcode};
+            String sql = "select count(1) num from user_login where openid=?";
+            Object[] params = {openid};
             rs = DBUtil.executeQuery(sql, params);
+            System.out.println("rs!!!:"+rs);
             if (rs != null) {
-                isexist = true;
+                rs.next();
+                int num = rs.getInt("num");
+                System.out.println("number!!!:"+num);
+                if(num > 0 ){
+                    return true;
+                }
             }
             return isexist;
         } catch (Exception e) {
@@ -244,11 +257,16 @@ public class TrashcanDaoImpl implements ITrashcanDao {
         ResultSet rs = null;
         boolean isexist = false;
         try {
-            String sql = "select count(1) from user_login where username=?";
+            String sql = "select count(1) num from user_login where username=?";
             Object[] params = {name};
             rs = DBUtil.executeQuery(sql, params);
             if (rs != null) {
-                isexist = true;
+                rs.next();
+                int num = rs.getInt("num");
+                System.out.println("number!!!:"+num);
+                if(num > 0 ){
+                    return true;
+                }
             }
             return isexist;
         } catch (Exception e) {

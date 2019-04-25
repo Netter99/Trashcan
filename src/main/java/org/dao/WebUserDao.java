@@ -8,6 +8,21 @@ package org.dao;
  */
 public interface WebUserDao {
 
+
+    /**
+     * id是否存在
+     * @param userId
+     * @return
+     */
+    boolean idExisted(int userId);
+
+    /**
+     * 根据用户id更改密码
+     * @param userId
+     * @param password
+     */
+    boolean changPwdById(int userId,String password);
+
     /**
      * 用户名是否已存在
      * @param username
