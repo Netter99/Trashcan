@@ -49,6 +49,7 @@ public class GetNearbyTrashCanServlet extends HttpServlet {
         }
         List<TrashCan> nearByTrashCan = canService.getNearByTrashCan(ip);
         map.put("trashCans",nearByTrashCan);
+        map.put("code",ResponseCode.REQUEST_SUCCEED.getValue());
         String json = JsonUtil.mapToJson(map);
         PrintWriter writer = response.getWriter();
         writer.write(json);
