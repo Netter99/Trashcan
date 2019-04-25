@@ -21,6 +21,14 @@ public interface WebUserService {
    boolean setUser(int id,String username,String password);
 
     /**
+     * 根据用户id修改密码
+     * @param userId
+     * @param password
+     * @return
+     */
+   boolean changPwdById(int userId,String password);
+
+    /**
      * 验证用户名和密码是否匹配
      * @param username
      * @param password

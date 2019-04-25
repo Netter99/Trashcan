@@ -3,16 +3,16 @@ package org.service;
 public interface LoginService {
 
     //添加openid
-    public boolean addOpenId(int id,String code);
+    public boolean addOpenId(String code);
 
     //用户信息注入
     public boolean Register(int id, String name, String pwd);
 
-    //查看是否第一次登陆
-    public boolean firstLogin(String openid);
+//    //查看是否第一次登陆
+//    public boolean firstLogin(String openid);
 
     //查看openid是否存在
-    public boolean isOpenIdExist(String code);
+    public boolean isOpenIdExist(String openid);
 
     //查看username是否存在
     public boolean iUserNameExist(String name);

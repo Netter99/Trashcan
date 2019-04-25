@@ -26,7 +26,7 @@ import java.util.Map;
 @WebFilter(filterName = "LoginFilter",
         urlPatterns = "/*",
         initParams = {
-            @WebInitParam(name="unCheckUrls",value = "/weblogin,/websocketTest,/test,/websocket,/ws/bitcoinServer,/websocketTest"),
+            @WebInitParam(name="unCheckUrls",value = "/weblogin,/websocketTest,/test,/websocket,/ws/bitcoinServer,/websocketTest,/Trashcan/red1.jpg"),
         })
 public class LoginFilter implements Filter {
 
@@ -53,7 +53,7 @@ public class LoginFilter implements Filter {
         List<String> urls = Arrays.asList(unCheckUrls.split(","));
         //如果请求的路径不需要登录
         System.out.println("path:"+requestPath);
-        if(urls.contains(requestPath) || requestPath.matches(".*(.html|.css|.jsp|.ico)$") || requestPath.matches("^wx.*")){
+        if(urls.contains(requestPath) || requestPath.matches(".*(.html|.css|.jsp|.ico)$") || requestPath.matches("^/wx.*")){
             chain.doFilter(req, resp);
         }else {
             HttpSession session = request.getSession();

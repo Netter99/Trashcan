@@ -9,12 +9,11 @@ public class LoginServiceImpl implements LoginService {
 
 
     @Override
-    public boolean addOpenId(int id,String code) {
+    public boolean addOpenId(String code) {
         String openid = trashcanDao.getOpenId(code);
         if (openid != null) {
-            return trashcanDao.addOpenId(id,openid);
+            return trashcanDao.addOpenId(openid);
         }
-
         return false;
     }
 
@@ -26,14 +25,14 @@ public class LoginServiceImpl implements LoginService {
         return false;
     }
 
-    @Override
-    public boolean firstLogin(String openid) {
-        if(isOpenIdExist(openid) == false){
-            return true;
-        }else {
-            return false;
-        }
-    }
+//    @Override
+//    public boolean firstLogin(String openid) {
+//        if(isOpenIdExist(openid) == false){
+//            return true;
+//        }else {
+//            return false;
+//        }
+//    }
 
     @Override
     public boolean isOpenIdExist(String openid) {

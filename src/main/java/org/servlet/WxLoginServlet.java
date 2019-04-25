@@ -9,18 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.alibaba.fastjson.JSONPObject;
-import org.apache.commons.collections.map.HashedMap;
 import org.constant.ResponseCode;
-import org.entity.Account;
-import org.service.ITrashcanService;
 import org.service.Impl.LoginServiceImpl;
-import org.service.Impl.TrashcanServiceImpl;
 import org.service.LoginService;
 import org.util.JsonUtil;
 
 import static org.constant.ResponseCode.ERROR_CODE;
-import static org.constant.ResponseCode.REQUEST_SUCCEED;
 
 public class WxLoginServlet extends HttpServlet {
 
@@ -32,12 +26,13 @@ public class WxLoginServlet extends HttpServlet {
         String code = request.getParameter("code");
         LoginService loginService = new LoginServiceImpl();
 
-        String openid = loginService.getOpenId(code);
+//        String openid = loginService.getOpenId(code);
+        String openid = "a";
         boolean result1 = false;
-        boolean result2 = false;
         Map<String,Object> map = new HashMap<String,Object>();
         if (openid != null) {//openid 获取成功 --- 有效
-            if(loginService.isOpenIdExist(openid)){//openid已存在
+            result1 = loginService.isOpenIdExist(openid);
+            if(result1){//openid已存在
                 HttpSession session = request.getSession();
                 session.setAttribute("id",loginService.getId(openid));//已存在用户id
 //                return 登陆成功的json字符串;
@@ -45,24 +40,19 @@ public class WxLoginServlet extends HttpServlet {
                 HttpSession session = request.getSession();
                 //id与openid信息注入
                 int id = loginService.getMaxId()+1;
-                loginService.addOpenId(id,openid);
-                System.out.println(id);
+                loginService.addOpenId(openid);
+                System.out.println("newid:"+id);
 
                 session.setAttribute("id",id);//新用户id
-                map.put("request_result", ResponseCode.REQUEST_SUCCEED.getValue());
+                map.put("code", ResponseCode.REQUEST_SUCCEED.getValue());
                 String json = JsonUtil.mapToJson(map);
                 response.getWriter().write(json);
 
-
                 //没有设置过用户名和密码的状态码
-
                 session.setAttribute("nameFlag","0");
-                map .put("code", ResponseCode.NOT_SET_USERNAME.getValue());
-                json = JsonUtil.mapToJson(map);
-                response.getWriter().write(json);
             }
         } else {
-            map.put("code",ERROR_CODE);
+            map.put("code",ResponseCode.ERROR_CODE.getValue());
             String json = JsonUtil.mapToJson(map);
             response.getWriter().write(json);
         }

@@ -32,4 +32,12 @@ public interface CanService {
      */
     List<TrashCan> getNearByTrashCan(String ip);
 
+    /**
+     * 根据经纬度获取附近的垃圾桶
+     * @param longitude
+     * @param latitude
+     * @return
+     */
+    List<TrashCan> getNearByTrashCan(double longitude,double latitude);
+
 }

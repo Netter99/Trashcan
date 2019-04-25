@@ -49,6 +49,18 @@ public class WebUserServiceImpl implements WebUserService {
     }
 
     @Override
+    public boolean changPwdById(int userId, String password) {
+        if(!webUserDao.idExisted(userId)){
+            return false;
+        }
+        byte[] saltBytes = generateSalt();
+        SimpleHash simpleHash = new SimpleHash(ALGORITH_NAME,password,saltBytes,ENCRYPT_NUM);
+        String changPsd = simpleHash.toHex();
+        String  salt = Base64.encodeToString(saltBytes);
+        return webUserDao.changPwdById(userId,password);
+    }
+
+    @Override
     public boolean verifyAcoount(String username, String password) {
 
         if(!webUserDao.usernameExisted(username)){

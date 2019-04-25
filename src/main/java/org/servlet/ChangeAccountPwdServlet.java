@@ -3,8 +3,10 @@ package org.servlet;
 import org.constant.ResponseCode;
 import org.service.Impl.LaunchTimeServiceImpl;
 import org.service.Impl.LoginServiceImpl;
+import org.service.Impl.WebUserServiceImpl;
 import org.service.LaunchTimeService;
 import org.service.LoginService;
+import org.service.WebUserService;
 import org.util.JsonUtil;
 
 import javax.servlet.ServletException;
@@ -29,35 +31,33 @@ public class ChangeAccountPwdServlet extends HttpServlet {
         HttpSession session = request.getSession();
         Map<String, Object> map = new HashMap<>();
         int id = (int) session.getAttribute("id");
-        String npwd = request.getParameter("npwd");
-        String anpwd = request.getParameter("anpwd");
-        String opwd = request.getParameter("opwd");
+        String password = request.getParameter("password");
 
         if (id >= 0) {//用户是否登录
-            if(loginService.isOpwdCorrect(id,opwd) == true && npwd.equals(anpwd)){//旧密码是否正确 并 新密码是否相同
-                boolean result = loginService.changePwd(id,npwd);
-                if (result) {
-                    map.put("request_result", ResponseCode.REQUEST_SUCCEED.getValue());
-                    String json = JsonUtil.mapToJson(map);
-                    response.getWriter().write(json);
-                } else {
-                    map.put("request_result", ResponseCode.SERVER_ERROR.getValue());
-                    String json = JsonUtil.mapToJson(map);
-                    response.getWriter().write(json);
-                }
-            }else {
-                map.put("request_result", ResponseCode.PARAM_ILEGALL.getValue());
+            //旧密码是否正确 并 新密码是否相同
+            WebUserService webUserService = new WebUserServiceImpl();
+            boolean result = webUserService.changPwdById(id, password);
+            if (result) {
+                map.put("request_result", ResponseCode.REQUEST_SUCCEED.getValue());
                 String json = JsonUtil.mapToJson(map);
                 response.getWriter().write(json);
+                return;
+            } else {
+                map.put("request_result", ResponseCode.SERVER_ERROR.getValue());
+                String json = JsonUtil.mapToJson(map);
+                response.getWriter().write(json);
+                return;
             }
-        }else {
+
+        } else {
             map.put("request_result", ResponseCode.NOT_LOGIN.getValue());
             String json = JsonUtil.mapToJson(map);
             response.getWriter().write(json);
+            return;
         }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request,response);
+        doPost(request, response);
     }
 }

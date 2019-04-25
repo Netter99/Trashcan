@@ -1,16 +1,46 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+<!DOCTYPE web-app PUBLIC
+        "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd" >
 <web-app>
-  <display-name>Archetype Created Web Application</display-name>
 
   <servlet>
-    <servlet-name>webLoginServlet</servlet-name>
+    <servlet-name>AddAccountInfoServlet</servlet-name>
+    <servlet-class>org.servlet.AddAccountInfoServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>AddAccountInfoServlet</servlet-name>
+    <url-pattern>/wxaddaccountinfo</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>UpLoadPicServlet</servlet-name>
+    <servlet-class>org.servlet.UpLoadPicServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>UpLoadPicServlet</servlet-name>
+    <url-pattern>/wxuploadpic</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>WebLoginServlet</servlet-name>
     <servlet-class>org.servlet.WebLoginServlet</servlet-class>
   </servlet>
 
   <servlet-mapping>
-    <servlet-name>webLoginServlet</servlet-name>
+    <servlet-name>WebLoginServlet</servlet-name>
     <url-pattern>/weblogin</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ChangeAccountPwdServlet</servlet-name>
+    <servlet-class>org.servlet.ChangeAccountPwdServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ChangeAccountPwdServlet</servlet-name>
+    <url-pattern>/wxchangeaccountpwd</url-pattern>
   </servlet-mapping>
 
   <servlet>
@@ -24,6 +54,16 @@
   </servlet-mapping>
 
   <servlet>
+    <servlet-name>ChangeGoodsServlet</servlet-name>
+    <servlet-class>org.servlet.ChangeGoodsServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ChangeGoodsServlet</servlet-name>
+    <url-pattern>/wxchangegoods</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
     <servlet-name>LaunchTimeServlet</servlet-name>
     <servlet-class>org.servlet.LaunchTimeServlet</servlet-class>
   </servlet>
@@ -33,25 +73,15 @@
     <url-pattern>/wxlaunchtime</url-pattern>
   </servlet-mapping>
 
-  <!--<servlet>-->
-    <!--<servlet-name>LoginServlet</servlet-name>-->
-    <!--<servlet-class>org.servlet.WxLoginServlet</servlet-class>-->
-  <!--</servlet>-->
+<!--  &lt;!&ndash;<servlet>&ndash;&gt;
+  &lt;!&ndash;<servlet-name>LoginServlet</servlet-name>&ndash;&gt;
+  &lt;!&ndash;<servlet-class>org.servlet.WxLoginServlet</servlet-class>&ndash;&gt;
+  &lt;!&ndash;</servlet>&ndash;&gt;
 
-  <!--<servlet-mapping>-->
-    <!--<servlet-name>LoginServlet</servlet-name>-->
-    <!--<url-pattern>/LoginServlet</url-pattern>-->
-  <!--</servlet-mapping>-->
-
-  <servlet>
-    <servlet-name>AddAccountInfoServlet</servlet-name>
-    <servlet-class>org.servlet.AddAccountInfoServlet</servlet-class>
-  </servlet>
-
-  <servlet-mapping>
-    <servlet-name>AddAccountInfoServlet</servlet-name>
-    <url-pattern>/wxaddaccountinfo</url-pattern>
-  </servlet-mapping>
+  &lt;!&ndash;<servlet-mapping>&ndash;&gt;
+  &lt;!&ndash;<servlet-name>LoginServlet</servlet-name>&ndash;&gt;
+  &lt;!&ndash;<url-pattern>/LoginServlet</url-pattern>&ndash;&gt;
+  &lt;!&ndash;</servlet-mapping>&ndash;&gt;-->
 
   <servlet>
     <servlet-name>TestServlet</servlet-name>
@@ -62,6 +92,5 @@
     <servlet-name>TestServlet</servlet-name>
     <url-pattern>/test</url-pattern>
   </servlet-mapping>
-
 
 </web-app>
