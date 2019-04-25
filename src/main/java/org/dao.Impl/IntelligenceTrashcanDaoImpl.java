@@ -43,7 +43,6 @@ public class IntelligenceTrashcanDaoImpl implements IntelligenceTrashcanDao {
     public List<CanInfo> getNearByCanGeoHashStr(String[] geoHashStr) {
         String sql = "select id,ip,longitude,latitude,geohash from can_info where geohash like ?";
         List<CanInfo> canInfos = new ArrayList<>();
-        int i = 0;
         for (String s : geoHashStr) {
             s += "%";
             Object[] params = {s};
@@ -64,8 +63,6 @@ public class IntelligenceTrashcanDaoImpl implements IntelligenceTrashcanDao {
                             canInfo.setIp(ip);
                             canInfo.setId(id);
                             System.out.println(canInfo);
-                            i++;
-                            System.out.println("第" + i + "次加");
                             canInfos.add(canInfo);
                         }
                         break;
