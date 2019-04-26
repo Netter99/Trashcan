@@ -33,7 +33,7 @@ public class EncodingFilter implements Filter {
         request.setCharacterEncoding(encode);
         response.setCharacterEncoding(encode);
         response.setHeader("Content-type", "text/html;charset=UTF-8");
-        chain.doFilter(request, response);
+        chain.doFilter(req, resp);
     }
 
     @Override
