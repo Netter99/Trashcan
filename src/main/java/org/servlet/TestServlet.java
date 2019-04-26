@@ -26,17 +26,25 @@ import java.util.Map;
  */
 public class TestServlet extends HttpServlet {
     CanService canService = new CanServiceImpl();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        PrintWriter writer = resp.getWriter();
+   /*     PrintWriter writer = resp.getWriter();
         Map<String,Object> map = new HashMap<>();
         List<TrashCan> nearByTrashCan = canService.getNearByTrashCan("0.0.0.0");
         map.put("trashcans",nearByTrashCan);
         String toJson = JsonUtil.mapToJson(map);
         writer.write(toJson);
-        return;
+        return;*/
+
+        String ipAddr = getIpAddress(req);
+        System.out.println("ip" + ipAddr);
+
 //        WebSocketServerManager.broadCast("广播一下");
 //        HttpSession reqSession = req.getSession();
 //        WebSocketServerManager.sendMsgToUser((Integer) reqSession.getAttribute("userId"),"这是发给你的");
     }
+
+
+
 }
