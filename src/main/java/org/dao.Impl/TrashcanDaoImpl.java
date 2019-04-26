@@ -97,11 +97,12 @@ public class TrashcanDaoImpl implements ITrashcanDao {
     }
 
     @Override
-    public boolean addAccountNP(int id, String name, String pwd) {
+    public boolean addAccountNP(int id,String name, String pwd) {
+        System.out.println(name+ "---"+ pwd);
         boolean success = false;
         try {
-            String sql = "insert into user_login(username,password) values(username=?,password=?) where id=?";
-            Object[] params = {id, name, pwd};
+            String sql = "update user_login set username=?,password=? where id=?";
+            Object[] params = {name, pwd,id};
             return DBUtil.executeUpdate(sql, params);
         } catch (Exception e) {
             e.printStackTrace();
@@ -252,10 +253,10 @@ public class TrashcanDaoImpl implements ITrashcanDao {
         }
     }
 
-    @Override//查看用户名是否存在
+    @Override//查看用户名是否存在  存在则返回true
     public boolean isNameExist(String name) {
         ResultSet rs = null;
-        boolean isexist = false;
+        boolean isexist = true;
         try {
             String sql = "select count(1) num from user_login where username=?";
             Object[] params = {name};
@@ -264,14 +265,14 @@ public class TrashcanDaoImpl implements ITrashcanDao {
                 rs.next();
                 int num = rs.getInt("num");
                 System.out.println("number!!!:"+num);
-                if(num > 0 ){
-                    return true;
+                if(num == 0 ){
+                    return false;
                 }
             }
             return isexist;
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            return true;
         } finally {
             DBUtil.closeAll(rs, null, null);
         }

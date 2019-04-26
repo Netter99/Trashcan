@@ -49,6 +49,14 @@ public interface WebUserService {
     int getUserIdByUsername(String username);
 
 
+
     String getIpAddress(HttpServletRequest request) throws IOException;
+
+    /**
+     * 获取当前表的最大id值
+     * @return
+     */
+    int getMaxId();
+
 
 }

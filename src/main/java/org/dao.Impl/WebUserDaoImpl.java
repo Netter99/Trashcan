@@ -65,6 +65,27 @@ public class WebUserDaoImpl implements WebUserDao {
     }
 
     @Override
+    public int getMaxId() {
+        int id = -1;
+        ResultSet rs = null;
+        try {
+            String sql = "select max(id) id from user_login";
+            rs = DBUtil.executeQuery(sql, null);
+            if (rs != null) {
+                rs.next();
+                id = rs.getInt("id");
+            }
+            System.out.println("id:" + id);
+            return id;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        } finally {
+            DBUtil.closeAll(rs, null, null);
+        }
+    }
+
+    @Override
     public String getSaltByUsername(String username) {
         String sql = "select salt from user_login where username = ?";
         Object[] params = {username};

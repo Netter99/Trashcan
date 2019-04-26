@@ -41,6 +41,12 @@ public interface WebUserDao {
     boolean addUser(String username, String password, String salt, int id);
 
     /**
+     * 获取当前id值
+     * @return
+     */
+    int getMaxId();
+
+    /**
      * 根据用户名获取盐值
      * @param username
      * @return

@@ -1,11 +1,8 @@
 package org.servlet;
 
 import org.constant.ResponseCode;
-import org.service.Impl.LaunchTimeServiceImpl;
 import org.service.Impl.LoginServiceImpl;
 import org.service.Impl.WebUserServiceImpl;
-import org.service.LaunchTimeService;
-import org.service.LoginService;
 import org.service.WebUserService;
 import org.util.JsonUtil;
 
@@ -30,6 +27,7 @@ public class ChangeAccountPwdServlet extends HttpServlet {
         LoginServiceImpl loginService = new LoginServiceImpl();
         HttpSession session = request.getSession();
         Map<String, Object> map = new HashMap<>();
+        session.setAttribute("id",5);
         int id = (int) session.getAttribute("id");
         String password = request.getParameter("password");
 
@@ -38,19 +36,19 @@ public class ChangeAccountPwdServlet extends HttpServlet {
             WebUserService webUserService = new WebUserServiceImpl();
             boolean result = webUserService.changPwdById(id, password);
             if (result) {
-                map.put("request_result", ResponseCode.REQUEST_SUCCEED.getValue());
+                map.put("code", ResponseCode.REQUEST_SUCCEED.getValue());
                 String json = JsonUtil.mapToJson(map);
                 response.getWriter().write(json);
                 return;
             } else {
-                map.put("request_result", ResponseCode.SERVER_ERROR.getValue());
+                map.put("code", ResponseCode.SERVER_ERROR.getValue());
                 String json = JsonUtil.mapToJson(map);
                 response.getWriter().write(json);
                 return;
             }
 
         } else {
-            map.put("request_result", ResponseCode.NOT_LOGIN.getValue());
+            map.put("code", ResponseCode.NOT_LOGIN.getValue());
             String json = JsonUtil.mapToJson(map);
             response.getWriter().write(json);
             return;

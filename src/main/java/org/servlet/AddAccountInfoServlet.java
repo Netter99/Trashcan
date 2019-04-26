@@ -2,7 +2,9 @@ package org.servlet;
 
 import org.constant.ResponseCode;
 import org.service.Impl.LoginServiceImpl;
+import org.service.Impl.WebUserServiceImpl;
 import org.service.LoginService;
+import org.service.WebUserService;
 import org.util.JsonUtil;
 
 import javax.servlet.ServletException;
@@ -22,51 +24,51 @@ public class AddAccountInfoServlet extends HttpServlet {
         resp.setContentType("text/html; charset=UTF-8");
         resp.setCharacterEncoding("utf-8");
 
-        LoginService loginService = new LoginServiceImpl();
+        WebUserService webUserService = new WebUserServiceImpl();
         HttpSession session = req.getSession();
-
-        //test
-        session.setAttribute("nameFlag", "1");
 
         Object nameFlag = session.getAttribute("nameFlag");
 
-//        int id = (int)session.getAttribute("id");
         String json = null;
         System.out.println("nameFlag:" + nameFlag);
-//        if (nameFlag != null) {//已经验证过code是有效的，并且用户没有设置过用户名和密码
-        String name = req.getParameter("username");
-        String pwd = req.getParameter("password");
-        System.out.println("name:" + name);
-        System.out.println("pwd:" + pwd);
-        Map<String, Object> map = new HashMap<>();
+        if (nameFlag != null) {//已经验证过code是有效的，并且用户没有设置过用户名和密码
+            String name = req.getParameter("username");
+            String pwd = req.getParameter("password");
+            Map<String, Object> map = new HashMap<>();
+            int id = webUserService.getMaxId();
 
-        //设置用户名和密码
-        if (loginService.iUserNameExist(name) == false) {//用户名不存在
-            int id = Integer.parseInt(session.getAttribute("id").toString());
-            boolean result = loginService.Register(id, name, pwd);
+            //设置用户名和密码
+            if (webUserService.isUsernameExisted(name) == false) {//用户名不存在
 
-            if (result == true) {
-                session.removeAttribute("nameFlag");
-                map.put("REQUEST_SUCCEED", ResponseCode.REQUEST_SUCCEED.getValue());
-                json = JsonUtil.mapToJson(map);
-                resp.getWriter().write(json);
+                if (webUserService.setUser(id,name,pwd) == true) {
+                    session.removeAttribute("nameFlag");
+                    map.put("code", ResponseCode.REQUEST_SUCCEED.getValue());
+                    json = JsonUtil.mapToJson(map);
+                    resp.getWriter().write(json);
+                    session.removeAttribute("nameFlag");
+
+                    session.setAttribute("id",id);
+                    return;
+                } else {
+                    map.put("code", ResponseCode.SERVER_ERROR.getValue());
+                    json = JsonUtil.mapToJson(map);
+                    resp.getWriter().write(json);
+                    return;
+                }
+
             } else {
-                map.put("SERVER_ERROR", ResponseCode.SERVER_ERROR.getValue());
+                map.put("code", ResponseCode.PARAM_ILEGALL.getValue());
                 json = JsonUtil.mapToJson(map);
                 resp.getWriter().write(json);
+                return;
             }
-
         } else {
-            map.put("PARAM_ILEGALL", ResponseCode.PARAM_ILEGALL.getValue());
+            Map<String, Object> map = new HashMap<>();
+            map.put("code", ResponseCode.NOT_LOGIN.getValue());
             json = JsonUtil.mapToJson(map);
             resp.getWriter().write(json);
+            return;
         }
-//        } else {
-//            Map<String, Object> map = new HashMap<>();
-//            map.put("NOT_LOGIN", ResponseCode.NOT_LOGIN.getValue());
-//            json = JsonUtil.mapToJson(map);
-//            resp.getWriter().write(json);
-//        }
 
     }
 
