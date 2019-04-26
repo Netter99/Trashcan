@@ -44,4 +44,10 @@ public interface WebUserService {
      */
     int getUserIdByUsername(String username);
 
+    /**
+     * 获取当前表的最大id值
+     * @return
+     */
+    int getMaxId();
+
 }

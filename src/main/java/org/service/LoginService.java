@@ -6,7 +6,7 @@ public interface LoginService {
     public boolean addOpenId(String code);
 
     //用户信息注入
-    public boolean Register(int id, String name, String pwd);
+    public boolean Register(int id,String name, String pwd);
 
 //    //查看是否第一次登陆
 //    public boolean firstLogin(String openid);

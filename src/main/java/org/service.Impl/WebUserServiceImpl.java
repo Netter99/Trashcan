@@ -89,6 +89,11 @@ public class WebUserServiceImpl implements WebUserService {
         return id;
     }
 
+    @Override
+    public int getMaxId() {
+        return webUserDao.getMaxId();
+    }
+
     private static byte[] generateSalt(){
         byte[] salt = new byte[16];
         try {

@@ -22,7 +22,7 @@ public interface ITrashcanDao {
     public boolean addOpenId(String openid);
 
     //添加用户名，密码
-    public boolean addAccountNP(int id, String name, String pwd);
+    public boolean addAccountNP(int id,String name, String pwd);
 
     //修改密码
     public boolean changePwd(int id, String pwd);

@@ -18,11 +18,8 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public boolean Register(int id, String name, String pwd) {
-        if (trashcanDao.isNameExist(name) == false) {
-            return trashcanDao.addAccountNP(id, name, pwd);
-        }
-        return false;
+    public boolean Register(int id,String name, String pwd) {
+        return trashcanDao.addAccountNP(id,name, pwd);
     }
 
 //    @Override

@@ -26,8 +26,8 @@ public class WxLoginServlet extends HttpServlet {
         String code = request.getParameter("code");
         LoginService loginService = new LoginServiceImpl();
 
-//        String openid = loginService.getOpenId(code);
-        String openid = "a";
+        String openid = loginService.getOpenId(code);//未测试
+//        String openid = "a";
         boolean result1 = false;
         Map<String,Object> map = new HashMap<String,Object>();
         if (openid != null) {//openid 获取成功 --- 有效
@@ -35,6 +35,10 @@ public class WxLoginServlet extends HttpServlet {
             if(result1){//openid已存在
                 HttpSession session = request.getSession();
                 session.setAttribute("id",loginService.getId(openid));//已存在用户id
+                map.put("code", ResponseCode.REQUEST_SUCCEED.getValue());
+                String json = JsonUtil.mapToJson(map);
+                response.getWriter().write(json);
+                return;
 //                return 登陆成功的json字符串;
             }else{
                 HttpSession session = request.getSession();
@@ -50,11 +54,13 @@ public class WxLoginServlet extends HttpServlet {
 
                 //没有设置过用户名和密码的状态码
                 session.setAttribute("nameFlag","0");
+                return;
             }
         } else {
             map.put("code",ResponseCode.ERROR_CODE.getValue());
             String json = JsonUtil.mapToJson(map);
             response.getWriter().write(json);
+            return;
         }
 
     }
