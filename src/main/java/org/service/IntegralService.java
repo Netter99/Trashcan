@@ -15,6 +15,14 @@ public interface IntegralService {
     boolean addIntegral(int userId, int score);
 
     /**
+     * 根据用户id减少用户积分
+     * @param userId
+     * @param score
+     * @return
+     */
+    boolean subIntegral(int userId,int score);
+
+    /**
      * 根据用户id查询用户积分
      * @param userId
      * @return

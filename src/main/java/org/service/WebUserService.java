@@ -1,4 +1,8 @@
 package org.service;
+
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+
 /**
  * @author zsw
  * @date 2019/4/17 21:53
@@ -43,5 +47,8 @@ public interface WebUserService {
      * @return
      */
     int getUserIdByUsername(String username);
+
+
+    String getIpAddress(HttpServletRequest request) throws IOException;
 
 }

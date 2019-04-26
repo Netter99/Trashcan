@@ -21,6 +21,17 @@ public class IntegralServiceImpl implements IntegralService {
     }
 
     @Override
+    public boolean subIntegral(int userId, int score) {
+        int preScore = this.getUserIntegral(userId);
+        if(preScore < score){
+            return false;
+        }
+        score -= preScore;
+        integralDao.setIntegral(userId,score);
+        return true;
+    }
+
+    @Override
     public int getUserIntegral(int userId) {
         if (!integralDao.isIdExist(userId)){
             integralDao.addUserIdToTable(userId);
