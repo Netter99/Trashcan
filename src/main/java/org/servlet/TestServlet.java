@@ -37,8 +37,8 @@ public class TestServlet extends HttpServlet {
         writer.write(toJson);
         return;*/
 
-        String ipAddr = getIpAddress(req);
-        System.out.println("ip" + ipAddr);
+//        String ipAddr = getIpAddress(req);
+//        System.out.println("ip" + ipAddr);
 
 //        WebSocketServerManager.broadCast("广播一下");
 //        HttpSession reqSession = req.getSession();

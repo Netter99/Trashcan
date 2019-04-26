@@ -66,7 +66,8 @@ public class WebLoginServlet extends HttpServlet {
         }else{
             int userId = webUserService.getUserIdByUsername(username);
             HttpSession session = req.getSession();
-            String ip = req.getParameter("ip");
+            String ip = webUserService.getIpAddress(req);
+            System.out.println("ip is:"  + ip);
             //sesssion保存用户Id
             session.setAttribute("userId",userId);
             //session保存用户ip
@@ -76,13 +77,11 @@ public class WebLoginServlet extends HttpServlet {
             //将用户ip和id保存
             UserIpStoreMapService.addUserIp(ip,userId);
             map.put("code",ResponseCode.REQUEST_SUCCEED.getValue());
+            map.put("ip",ip);
             String json = JsonUtil.mapToJson(map);
             PrintWriter writer = resp.getWriter();
             writer.write(json);
             return;
         }
-
     }
-
-
 }
